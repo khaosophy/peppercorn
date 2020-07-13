@@ -20,11 +20,21 @@ exports.getRecipes = async (req, res, next) => {
 // @desc      Get single recipe based on ID
 // @route     GET /api/v1/recipes/:id
 // @access    Public
-exports.getRecipe = (req, res, next) => {
-  res.status(200).json({
-    success: true,
-    message: 'show single recipe',
-  });
+exports.getRecipe = async (req, res, next) => {
+  try {
+    const recipe = await Recipe.findById(req.params.id);
+
+    if(!recipe) {
+      return res.status(400).json({ success: false });
+    }
+
+    res.status(200).json({
+      success: true,
+      data: recipe,
+    })
+  } catch (err) {
+    res.status(400).json({ success: false });
+  }
 }
 
 // @desc      Create new recipe
