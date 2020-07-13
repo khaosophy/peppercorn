@@ -1,11 +1,20 @@
+const Recipe = require('../models/Recipe');
+
 // @desc      Get all recipes for user
 // @route     GET /api/v1/recipes
 // @access    Public
-exports.getRecipes = (req, res, next) => {
-  res.status(200).json({
-    success: true,
-    message: 'show all recipes',
-  });
+exports.getRecipes = async (req, res, next) => {
+  try {
+    const recipes = await Recipe.find();
+
+    res.status(200).json({
+      success: true,
+      count: recipes.length,
+      data: recipes,
+    })
+  } catch (err) {
+    res.status(400).json({ success: false });
+  }
 }
 
 // @desc      Get single recipe based on ID
@@ -21,11 +30,17 @@ exports.getRecipe = (req, res, next) => {
 // @desc      Create new recipe
 // @route     POST /api/v1/recipes
 // @access    Public
-exports.createRecipe = (req, res, next) => {
-  res.status(200).json({
-    success: true,
-    message: 'create new recipe',
-  });
+exports.createRecipe = async (req, res, next) => {
+  try {
+    const recipe = await Recipe.create(req.body);
+
+    res.status(201).json({
+      success: true,
+      data: recipe,
+    });
+  } catch(err) {
+    res.status(400).json({ success: false });
+  }
 }
 
 // @desc      Update recipe based on ID

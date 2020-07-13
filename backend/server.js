@@ -1,22 +1,48 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const logger = require('morgan');
+const mongoose = require('mongoose');
+const colors = require('colors');
+
+// Load environment variables
+dotenv.config();
+const PORT = process.env.PORT || 5000;
+const ENV = process.env.NODE_ENV || 'development';
+const MONGO_URI = process.env.MONGO_URI;
+
+// Establish databse connection
+const connectDB = async () => {
+  const conn = await mongoose.connect(MONGO_URI, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+    useUnifiedTopology: true,
+  });
+
+  console.log(colors.cyan.underline.bold(`MongoDB Connected: ${conn.connection.host}`));
+}
+connectDB();
 
 // Get route files
 const recipes = require('./routes/recipes');
 
-// Init server
-dotenv.config();
+// Initiate!
 const app = express();
-
-// Init Logger
-if(process.env.NODE_ENV === 'development'){
+app.use(express.json());
+if(ENV === 'development'){
   app.use(logger('dev'));
 }
 
-// Mount routers
+// Set up routes
 app.use('/api/v1/recipes', recipes);
 
 // Start server!
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} on port ${PORT}.`));
+const server = app.listen(PORT,
+  console.log(colors.yellow.bold(`Server running in ${ENV} on port ${PORT}.`))
+);
+
+// Handle rejections
+process.on('unhandledRejection', (err, promise) => {
+  console.log(colors.red(`Error: ${err.message}`));
+  server.close(() => process.exit(1));
+})

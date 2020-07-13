@@ -4,7 +4,8 @@
   "description": "This is the code the manages the API for the MealPlanner app, including recipes, users, and the schedule.",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon server"
+    "dev": "nodemon server",
+    "start": "set NODE_ENV=production && node server"
   },
   "author": "Casey James Perno",
   "license": "MIT",
@@ -13,7 +14,9 @@
     "nodemon": "^2.0.4"
   },
   "dependencies": {
+    "colors": "^1.4.0",
     "dotenv": "^8.2.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mongoose": "^5.9.23"
   }
 }
