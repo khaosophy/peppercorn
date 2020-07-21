@@ -1,5 +1,6 @@
 const Recipe = require('../models/Recipe');
 const asyncHandler = require('../middleware/async');
+const ErrorResponse = require('../utils/errorResponse');
 
 // @desc      Get all recipes for user
 // @route     GET /api/v1/recipes
@@ -21,7 +22,7 @@ exports.getRecipe = asyncHandler(async (req, res, next) => {
   const recipe = await Recipe.findById(req.params.id);
 
   if(!recipe) {
-    return res.status(400).json({ success: false });
+    return next(new ErrorResponse(`Recipe not found with id of ${req.params.id}`, 404));
   }
 
   res.status(200).json({
@@ -52,10 +53,7 @@ exports.updateRecipe = asyncHandler(async (req, res, next) => {
   });
 
   if(!recipe) {
-    return res.status(400).json({ 
-      success: false,
-      message: 'Recipe not found',
-    });
+    return next(new ErrorResponse(`Recipe not found with id of ${req.params.id}`, 404));
   }
 
   res.status(200).json({
@@ -71,7 +69,7 @@ exports.deleteRecipe = asyncHandler(async (req, res, next) => {
   const recipe = await Recipe.findByIdAndDelete(req.params.id);
 
   if(!recipe) {
-    return res.status(400).json({ success: false });
+    return next(new ErrorResponse(`Recipe not found with id of ${req.params.id}`, 404));
   }
 
   res.status(200).json({

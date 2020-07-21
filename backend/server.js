@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 const logger = require('morgan');
 const mongoose = require('mongoose');
 const colors = require('colors');
+const errorHandler = require('./middleware/error');
 
 // Load environment variables
 dotenv.config();
@@ -35,6 +36,8 @@ if(ENV === 'development'){
 
 // Set up routes
 app.use('/api/v1/recipes', recipes);
+
+app.use(errorHandler);
 
 // Start server!
 const server = app.listen(PORT,
