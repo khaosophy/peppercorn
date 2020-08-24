@@ -8,20 +8,21 @@ const RecipeSchema = new mongoose.Schema({
     trim: true,
     maxlength: [50, 'Name cannot be more than 50 characters.'],
   },
-  ingredients: {
+  description: String,
+  type: {
     type: String,
+    enum: ['One Pot', 'Side', 'Main'],
   },
-  instructions: {
-    type: String,
-  },
-  photo: {
-    type: String,
-    default: 'no-photo.jpg',
-  },
+  servings: Number,
+  ingredients: String,  // todo: this will be another data type
+  instructions: [String],
   createdAt: {
     type: Date,
     default: Date.now,
   },
 });
+
+// todo: add image field
+// todo: map to certain users
 
 module.exports = mongoose.model('Recipe', RecipeSchema);

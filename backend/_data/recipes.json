@@ -1,0 +1,23 @@
+[
+  {
+		"name": "Japanese Curry",
+    "description": "Delicious chicken curry and rice inspired by the classic Japanese dish",
+    "ingredients": "",
+    "type": "One Pot",
+    "instructions": ["Cook the chicken", "Cook the rice", "Make the rue", "Serve"]
+  },
+  {
+    "name": "Crispy Chicken Parmesan",
+    "description": "",
+    "ingredients": "",
+    "type": "One Pot",
+    "instructions": ["Cut the carrots", "Bread the chicken", "Cook in oven for 15-20 minutes at 425 degrees Fahrenheit", "Make couscous", "Serve!"]
+  },
+  {
+    "name": "Risotto",
+    "description": "",
+    "ingredients": "",
+    "type": "Side",
+    "instructions": ["Sautee onions", "Toast arborio rice", "Add chicken broth", "Pressure cook for 7 minutes", "Serve!"]
+  }
+]
