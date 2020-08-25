@@ -4,6 +4,7 @@
     "description": "Delicious chicken curry and rice inspired by the classic Japanese dish",
     "ingredients": "",
     "type": "One Pot",
+    "servings": 6,
     "instructions": ["Cook the chicken", "Cook the rice", "Make the rue", "Serve"]
   },
   {
@@ -11,6 +12,7 @@
     "description": "",
     "ingredients": "",
     "type": "One Pot",
+    "servings": 4,
     "instructions": ["Cut the carrots", "Bread the chicken", "Cook in oven for 15-20 minutes at 425 degrees Fahrenheit", "Make couscous", "Serve!"]
   },
   {
@@ -18,6 +20,7 @@
     "description": "",
     "ingredients": "",
     "type": "Side",
+    "servings": 5,
     "instructions": ["Sautee onions", "Toast arborio rice", "Add chicken broth", "Pressure cook for 7 minutes", "Serve!"]
   }
 ]
