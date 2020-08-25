@@ -19,7 +19,7 @@ The development of this application will be phased. We are ***early*** in the fi
 ### Other Features
 
 * The ability to import recipes from recipe sites
-* The ability to generate nutrional information for recipes
+* The ability to generate nutritional information for recipes
 * The ability to share recipes with other users or keep private
 
 ## Check back soon for updates!

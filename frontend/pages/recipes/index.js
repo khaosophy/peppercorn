@@ -1,6 +1,11 @@
 import fetch from 'node-fetch';
-import Layout from '../components/Layout';
-import RecipeCard from '../components/RecipeCard';
+import Layout from '../../components/Layout';
+import RecipeCard from '../../components/RecipeCard';
+
+/**
+ * This page can be found it /recipes
+ * It shows all recipes for the logged in user.
+ */
 
 function Recipes({ response }) {
   return (
@@ -11,6 +16,7 @@ function Recipes({ response }) {
             {response.data.map((recipe) => (
               <RecipeCard 
                 key={recipe._id}
+                id={recipe._id}
                 name={recipe.name}
               />
             ))}
