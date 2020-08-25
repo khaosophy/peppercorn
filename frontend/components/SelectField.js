@@ -23,5 +23,7 @@ SelectField.propTypes = {
     })
   ).isRequired,
   value: PropTypes.string,
+  id: PropTypes.string,
+  class: PropTypes.string,
   required: PropTypes.bool
 }

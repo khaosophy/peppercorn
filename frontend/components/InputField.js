@@ -29,6 +29,8 @@ InputField.propTypes = {
     PropTypes.string,
     PropTypes.number,
   ]).isRequired,
+  id: PropTypes.string,
+  class: PropTypes.string,
   placeholder: PropTypes.string,
   required: PropTypes.bool
 }
