@@ -24,13 +24,10 @@ class RecipeForm extends React.Component {
 
   async handleSubmit(event) {
     event.preventDefault();
-    console.log('form submitting...');
-
+    
     const data = JSON.stringify({...this.state});
-    console.log(data);
 
     if(this.props.action === "edit") {
-      // console.log(this.props.recipeId);
       const res = await fetch(`http://localhost:5000/api/v1/recipes/${this.props.recipeId}`, {
         method: 'PUT',
         body: data,
@@ -38,7 +35,14 @@ class RecipeForm extends React.Component {
           'Content-Type': 'application/json'
         },
       });
-      console.log(res.json());
+      const response = await res.json();
+      if(response.success) {
+        //todo: show success!
+        console.log('update successful!');
+      } else {
+        //todo: show failure
+        console.error('update failed!');
+      }
     }
   }
 

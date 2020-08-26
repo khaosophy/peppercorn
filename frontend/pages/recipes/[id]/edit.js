@@ -3,8 +3,9 @@ import Layout from '../../../components/Layout';
 import RecipeForm from '../../../components/RecipeForm';
 
 /**
- * This page can be found at /recipes/[id]
- * It shows a single recipe, and can only be seen by the user who owns it.
+ * This page can be found at /recipes/[id]/edit
+ * It shows a form with the recipe's data filled out,
+ * and gives users the ability to edit their saved recipe.
  */
 
 const EditRecipe = (props) => {
