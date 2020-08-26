@@ -37,7 +37,7 @@ class RecipeForm extends React.Component {
       });
       const response = await res.json();
       if(response.success) {
-        //todo: show success!
+        //todo: redirect to Recipe page and show success notice
         console.log('update successful!');
       } else {
         //todo: show failure

@@ -12,7 +12,7 @@ const EditRecipe = (props) => {
   const { response, recipeId } = props;
   if(!response.success) return <h1>Error Retrieving Recipe</h1>
 
-  const { name, instructions } = response.data;
+  const { name } = response.data;
   return (
     <Layout title={name}>
       <h1>Edit {name}</h1>
