@@ -2,12 +2,12 @@ import PropTypes from 'prop-types';
 
 const SelectField = (props) => {
   return (
-    <React.Fragment>
-      <label>{props.label}</label>
-      <select value={props.value} onChange={props.onChange}>
+    <div id={props.id} className="field">
+      <label className="field__label">{props.label}</label>
+      <select className="field__input" value={props.value} onChange={props.onChange}>
         {props.options.map((option) => <option key={option.value} value={option.value}>{option.text}</option>)}
       </select>
-    </React.Fragment>
+    </div>
   )
 }
 

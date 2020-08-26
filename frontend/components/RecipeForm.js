@@ -24,7 +24,10 @@ class RecipeForm extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form
+        className="recipe-form"
+        onSubmit={this.handleSubmit} 
+      >
         <InputField 
           type="text"
           class="test"

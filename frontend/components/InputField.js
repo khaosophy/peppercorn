@@ -2,16 +2,17 @@ import PropTypes from 'prop-types';
 
 const InputField = (props) => {
   return (
-    <React.Fragment>
-      <label>{props.label}</label>
+    <div id={props.id} className="field">
+      <label className="field__label">{props.label}</label>
       <input 
+        className="field__input"
         type={props.type}
         value={props.value}
         onChange={props.onChange}
         placeholder={props.placeholder ? props.placeholder : ''}
         required={props.required}
       />
-    </React.Fragment>
+    </div>
   )
 }
 

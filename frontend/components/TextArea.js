@@ -2,16 +2,17 @@ import PropTypes from 'prop-types';
 
 const TextArea = (props) => {
   return (
-    <React.Fragment>
-      <label>{props.label}</label>
+    <div id={props.id} className="field">
+      <label className="field__label">{props.label}</label>
       <textarea
+        className="field__input"
         value={props.children}
         cols={props.cols}
         rows={props.rows}
         onChange={props.onChange}
-        required={props.required}>
-      </textarea>
-    </React.Fragment>
+        required={props.required}
+      ></textarea>
+    </div>
   )
 }
 

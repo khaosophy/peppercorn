@@ -1,0 +1,22 @@
+.field {
+  display: block;
+  margin-bottom: 1rem;
+  display: flex;
+  // justify-content: space-between;
+  align-content: center;
+}
+
+.field__label {
+  font-weight: bold;
+}
+
+.field__input {
+
+}
+
+.recipe-form {
+  .field__label {
+    display: block;
+    width: 15%;
+  }
+}
