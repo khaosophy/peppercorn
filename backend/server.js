@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 const logger = require('morgan');
 const mongoose = require('mongoose');
 const colors = require('colors');
+const cors = require('cors');
 const errorHandler = require('./middleware/error');
 
 // Load environment variables
@@ -11,7 +12,7 @@ const PORT = process.env.PORT || 5000;
 const ENV = process.env.NODE_ENV || 'development';
 const MONGO_URI = process.env.MONGO_URI;
 
-// Establish databse connection
+// Establish database connection
 const connectDB = async () => {
   const conn = await mongoose.connect(MONGO_URI, {
     useNewUrlParser: true,
@@ -33,6 +34,11 @@ app.use(express.json());
 if(ENV === 'development'){
   app.use(logger('dev'));
 }
+
+app.use(cors({
+  origin: 'http://localhost:3000',
+  optionsSuccessStatus: 200
+}));
 
 // Set up routes
 app.use('/api/v1/recipes', recipes);
