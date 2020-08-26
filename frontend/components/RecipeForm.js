@@ -10,10 +10,11 @@ class RecipeForm extends React.Component {
       name: this.props.data.name || '',
       servings: this.props.data.servings || '',
       description: this.props.data.description || '',
-      type: this.props.data.type || '',
+      // type: this.props.data.type || '',
     }
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
@@ -21,12 +22,32 @@ class RecipeForm extends React.Component {
     this.setState({ [name]: value });
   }
 
+  async handleSubmit(event) {
+    event.preventDefault();
+    console.log('form submitting...');
+
+    const data = JSON.stringify({...this.state});
+    console.log(data);
+
+    if(this.props.action === "edit") {
+      // console.log(this.props.recipeId);
+      const res = await fetch(`http://localhost:5000/api/v1/recipes/${this.props.recipeId}`, {
+        method: 'PUT',
+        body: data,
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      });
+      console.log(res.json());
+    }
+  }
+
   render() {
     return (
       <form
         id={this.props.id}
         className="recipe-form"
-        onSubmit={this.props.onSubmit}
+        onSubmit={this.handleSubmit}
       >
         <InputField 
           type="text"
@@ -51,12 +72,12 @@ class RecipeForm extends React.Component {
           value={this.state.servings}
         />
         {/* todo: instructions / steps */}
-        <SelectField 
+        {/* <SelectField 
           label="Recipe Type"
           name="type"
           onChange={this.handleChange}
           options={[{value: 'onePot', text: 'One Pot'}, {value: 'side', text: 'Side'}, {value: 'main', text: 'Main'}]}
-        />
+        /> */}
         <button>Save Recipe</button>
       </form>
     )
@@ -66,6 +87,7 @@ class RecipeForm extends React.Component {
 export default RecipeForm;
 
 RecipeForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
+  // onSubmit: PropTypes.func.isRequired,
+  recipeId: PropTypes.string,
   id: PropTypes.string,
 }

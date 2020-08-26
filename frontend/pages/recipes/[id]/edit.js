@@ -7,7 +7,8 @@ import RecipeForm from '../../../components/RecipeForm';
  * It shows a single recipe, and can only be seen by the user who owns it.
  */
 
-const Recipe = ({ response }) => {
+const EditRecipe = (props) => {
+  const { response, recipeId } = props;
   if(!response.success) return <h1>Error Retrieving Recipe</h1>
 
   const { name, instructions } = response.data;
@@ -16,16 +17,18 @@ const Recipe = ({ response }) => {
       <h1>Edit {name}</h1>
       <RecipeForm 
         data={response.data}
-        onSubmit={() => {}} 
+        recipeId={recipeId}
+        action="edit"
       />
     </Layout>
   )
 }
 
 export async function getServerSideProps(context) {
-  const res = await fetch(`http://localhost:5000/api/v1/recipes/${context.query.id}`);
+  const recipeId = context.query.id;
+  const res = await fetch(`http://localhost:5000/api/v1/recipes/${recipeId}`);
   const response = await res.json();
-  return { props: { response } };
+  return { props: { response, recipeId } };
 }
 
-export default Recipe;
+export default EditRecipe;
