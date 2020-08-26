@@ -8,6 +8,7 @@ const InputField = (props) => {
         className="field__input"
         type={props.type}
         value={props.value}
+        name={props.name}
         onChange={props.onChange}
         placeholder={props.placeholder ? props.placeholder : ''}
         required={props.required}
@@ -30,6 +31,7 @@ InputField.propTypes = {
     PropTypes.string,
     PropTypes.number,
   ]).isRequired,
+  name: PropTypes.string,
   id: PropTypes.string,
   class: PropTypes.string,
   placeholder: PropTypes.string,

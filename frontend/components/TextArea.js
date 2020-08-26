@@ -9,6 +9,7 @@ const TextArea = (props) => {
         value={props.children}
         cols={props.cols}
         rows={props.rows}
+        name={props.name}
         onChange={props.onChange}
         required={props.required}
       ></textarea>
@@ -21,6 +22,7 @@ export default TextArea;
 TextArea.propTypes = {
   label: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
+  name: PropTypes.string,
   id: PropTypes.string,
   class: PropTypes.string,
   rows: PropTypes.number,

@@ -4,7 +4,12 @@ const SelectField = (props) => {
   return (
     <div id={props.id} className="field">
       <label className="field__label">{props.label}</label>
-      <select className="field__input" value={props.value} onChange={props.onChange}>
+      <select
+        className="field__input"
+        value={props.value}
+        name={props.name}
+        onChange={props.onChange}
+      >
         {props.options.map((option) => <option key={option.value} value={option.value}>{option.text}</option>)}
       </select>
     </div>
@@ -22,7 +27,11 @@ SelectField.propTypes = {
       text: PropTypes.string,
     })
   ).isRequired,
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
+  name: PropTypes.string,
   id: PropTypes.string,
   class: PropTypes.string,
   required: PropTypes.bool

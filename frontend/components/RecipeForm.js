@@ -10,45 +10,51 @@ class RecipeForm extends React.Component {
       name: this.props.data.name || '',
       servings: this.props.data.servings || '',
       description: this.props.data.description || '',
+      type: this.props.data.type || '',
     }
+
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  handleInputChange(key, value) {
-    this.setState({ [key]: value });
-  }
-
-  handleSubmit(e) {
-    e.preventDefault();
-    console.log('form submitted!');
+  handleChange(event) {
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
   }
 
   render() {
     return (
       <form
+        id={this.props.id}
         className="recipe-form"
-        onSubmit={this.handleSubmit} 
+        onSubmit={this.props.onSubmit}
       >
         <InputField 
           type="text"
-          class="test"
           label="Recipe Name"
-          onChange={(e) => this.handleInputChange('name', e.target.value)}
+          name="name"
+          onChange={this.handleChange}
           value={this.state.name}
           required
         />
-        <TextArea label="Description" onChange={(e) => this.handleInputChange('description', e.target.value)}>
+        <TextArea
+          label="Description"
+          name="description"
+          onChange={this.handleChange}
+        >
           {this.state.description}
         </TextArea>
         <InputField 
           type="number"
           label="Servings"
-          onChange={(e) => this.handleInputChange('servings', e.target.value)}
+          name="servings"
+          onChange={this.handleChange}
           value={this.state.servings}
         />
         {/* todo: instructions / steps */}
         <SelectField 
           label="Recipe Type"
-          onChange={(e) => this.handleInputChange('type', e.target.value)}
+          name="type"
+          onChange={this.handleChange}
           options={[{value: 'onePot', text: 'One Pot'}, {value: 'side', text: 'Side'}, {value: 'main', text: 'Main'}]}
         />
         <button>Save Recipe</button>
@@ -61,4 +67,5 @@ export default RecipeForm;
 
 RecipeForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
+  id: PropTypes.string,
 }
