@@ -1,7 +1,7 @@
 import Layout from '../../components/Layout';
 
 const StyleGuide = () => (
-  <Layout>
+  <Layout title="Style Guide">
     <h1>Hello World</h1>
     <h2>Hello World</h2>
     <h3>Hello World</h3>
