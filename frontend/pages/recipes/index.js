@@ -1,4 +1,5 @@
 import fetch from 'node-fetch';
+import Link from 'next/link';
 import Layout from '../../components/Layout';
 import RecipeCard from '../../components/RecipeCard';
 
@@ -20,6 +21,9 @@ function Recipes({ response }) {
                 name={recipe.name}
               />
             ))}
+            <Link href="/recipes/new">
+              <a style={{ display: 'block', marginTop: '3rem' }}>+ Add a New Recipe</a>
+            </Link>
           </React.Fragment>
           : <h2>Failed to retrieve you're recipes.</h2>
         }
