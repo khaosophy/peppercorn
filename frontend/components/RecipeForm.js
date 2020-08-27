@@ -7,9 +7,9 @@ class RecipeForm extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      name: this.props.data.name || '',
-      servings: this.props.data.servings || '',
-      description: this.props.data.description || '',
+      name: this.props.data ? this.props.data.name : '',
+      servings: this.props.data ? this.props.data.servings : '',
+      description: this.props.data ? this.props.data.description : '',
       // type: this.props.data.type || '',
     }
 
@@ -27,7 +27,7 @@ class RecipeForm extends React.Component {
     
     const data = JSON.stringify({...this.state});
 
-    if(this.props.action === "edit") {
+    if(this.props.action === 'edit') {
       const res = await fetch(`http://localhost:5000/api/v1/recipes/${this.props.recipeId}`, {
         method: 'PUT',
         body: data,
@@ -41,6 +41,25 @@ class RecipeForm extends React.Component {
         console.log('update successful!');
       } else {
         //todo: show failure
+        console.error('update failed!');
+      }
+    }
+
+    if(this.props.action === 'create') {
+      const res = await fetch(`http://localhost:5000/api/v1/recipes`, {
+        method: 'POST',
+        body: data,
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      });
+      const response = await res.json();
+      if(response.success) {
+        //todo: redirect to new Recipe page and show success notice
+        // maybe include a link to create another recipe?
+        console.log('new recipe created!');
+      } else {
+        // todo: show failure
         console.error('update failed!');
       }
     }
@@ -92,6 +111,7 @@ export default RecipeForm;
 
 RecipeForm.propTypes = {
   // onSubmit: PropTypes.func.isRequired,
+  action: PropTypes.oneOf(['edit', 'create']),
   recipeId: PropTypes.string,
   id: PropTypes.string,
 }

@@ -5,7 +5,7 @@ const Layout = (props) => {
   return (
     <div className="container">
       <Head>
-        <title>{props.title} | MealPlanner</title>
+        <title>{props.title} | Peppercorn</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
