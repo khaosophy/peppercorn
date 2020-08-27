@@ -25,7 +25,7 @@ function Recipes({ response }) {
               <a style={{ display: 'block', marginTop: '3rem' }}>+ Add a New Recipe</a>
             </Link>
           </React.Fragment>
-          : <h2>Failed to retrieve you're recipes.</h2>
+          : <h2>Failed to retrieve your recipes.</h2>
         }
     </Layout>
   )
