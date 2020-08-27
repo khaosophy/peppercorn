@@ -1,4 +1,5 @@
 import fetch from 'node-fetch';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Layout from '../../../components/Layout';
 
@@ -7,8 +8,25 @@ import Layout from '../../../components/Layout';
  * It shows a single recipe, and can only be seen by the user who owns it.
  */
 
-const Recipe = (props) => {
+export default function Recipe(props) {
   const { response, recipeId } = props;
+  const router = useRouter();
+
+  async function handleDelete() {
+    //todo: make user confirm delete
+    const res = await fetch(`http://localhost:5000/api/v1/recipes/${recipeId}`, {
+      method: 'DELETE',
+    })
+    const response = await res.json();
+    if(response.success) {
+      router.push('/recipes');
+      //todo: show success notice
+      console.log('successfully deleted!');
+    } else {
+      console.error('issue deleting recipe...');
+    }
+  }
+
   if(!response.success) return <h1>Error Retrieving Recipe</h1>
 
   const { name, instructions, description, servings } = response.data;
@@ -21,6 +39,13 @@ const Recipe = (props) => {
         <Link href={`/recipes/${recipeId}/edit`}>
           <a className="recipe__edit">Edit</a>
         </Link>
+        <a 
+          href="#"
+          className="recipe__delete"
+          onClick={handleDelete}
+        >
+            Delete
+        </a>
       </div>
 
       {description && <p className="recipe__description">{description}</p>}
@@ -38,5 +63,3 @@ export async function getServerSideProps(context) {
   const response = await res.json();
   return { props: { response, recipeId } };
 }
-
-export default Recipe;
