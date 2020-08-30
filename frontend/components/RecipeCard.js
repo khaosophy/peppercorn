@@ -3,9 +3,22 @@ import Link from 'next/link';
 
 const RecipeCard = (props) => (
   <div id={props.id} className="card">
-    <Link href={`/recipes/${props.id}`}>
-      <a>{props.name}</a>
-    </Link>
+    <div className="card__header">
+      <Link href={`/recipes/${props.id}`}>
+        <a>
+          <img
+            src="https://baconmockup.com/250/150"
+            alt={`${props.name}`}
+            className="card__img"
+          />
+        </a>
+      </Link>
+    </div>
+    <div className="card__body">
+      <Link href={`/recipes/${props.id}`}>
+        <a>{props.name}</a>
+      </Link>
+    </div>
   </div>
 )
 
