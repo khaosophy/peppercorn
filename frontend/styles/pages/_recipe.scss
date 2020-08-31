@@ -1,4 +1,15 @@
 /**
+ * These are the styles that will get used on the recipes page,
+ * such as those found @ /recipes
+ */
+
+ .recipe-grid {
+   display: grid;
+   grid-gap: 1rem;
+   grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+ }
+
+/**
  * These are the styles that will get used on a single recipe page,
  * such as those found @ /recipes/[id]
  */

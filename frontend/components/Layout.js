@@ -8,7 +8,7 @@ const Layout = (props) => {
         <title>{props.title} | Peppercorn</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
+      <main className={props.mainClass}>
         {props.children}
       </main>
     </div>
@@ -19,4 +19,6 @@ export default Layout;
 
 Layout.propTypes = {
   title: PropTypes.string.isRequired,
+  mainClass: PropTypes.string,
+  containerClass: PropTypes.string,
 }

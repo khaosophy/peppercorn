@@ -9,7 +9,7 @@ const RecipeCard = (props) => (
           <img
             src="https://baconmockup.com/250/150"
             alt={`${props.name}`}
-            className="card__img"
+            className="card__image"
           />
         </a>
       </Link>

@@ -14,17 +14,19 @@ function Recipes({ response }) {
         <h1>Recipes</h1>
         {response.success ? 
           <React.Fragment>
-            {response.data.map((recipe) => (
-              <RecipeCard 
-                key={recipe._id}
-                id={recipe._id}
-                name={recipe.name}
-              />
-            ))}
-            <Link href="/recipes/new">
-              <a style={{ display: 'block', marginTop: '3rem' }}>+ Add a New Recipe</a>
-            </Link>
-          </React.Fragment>
+            <div className="recipe-grid">
+              {response.data.map((recipe) => (
+                <RecipeCard 
+                  key={recipe._id}
+                  id={recipe._id}
+                  name={recipe.name}
+                />
+              ))}
+              </div>
+              <Link href="/recipes/new">
+                <a style={{ display: 'block', marginTop: '3rem' }}>+ Add a New Recipe</a>
+              </Link>
+            </React.Fragment>
           : <h2>Failed to retrieve your recipes.</h2>
         }
     </Layout>
