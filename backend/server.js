@@ -1,6 +1,8 @@
 const express = require('express');
 const dotenv = require('dotenv');
+const path = require('path');
 const logger = require('morgan');
+const fileupload = require('express-fileupload');
 const mongoose = require('mongoose');
 const colors = require('colors');
 const cors = require('cors');
@@ -30,6 +32,8 @@ const recipes = require('./routes/recipes');
 
 // Initiate!
 const app = express();
+app.use(fileupload());
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 if(ENV === 'development'){
   app.use(logger('dev'));

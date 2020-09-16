@@ -13,6 +13,7 @@ const RecipeSchema = new mongoose.Schema({
     type: String,
     enum: ['One Pot', 'Side', 'Main'],
   },
+  image: String,
   servings: Number,
   ingredients: String,  // todo: this will be another data type
   instructions: [String],
@@ -22,7 +23,6 @@ const RecipeSchema = new mongoose.Schema({
   },
 });
 
-// todo: add image field
 // todo: map to certain users
 
 module.exports = mongoose.model('Recipe', RecipeSchema);

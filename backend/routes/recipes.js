@@ -6,6 +6,7 @@ const {
   createRecipe,
   updateRecipe,
   deleteRecipe,
+  uploadRecipeImage
 } = require('../controllers/recipes');
 
 router.route('/')
@@ -16,5 +17,8 @@ router.route('/:id')
   .get(getRecipe)
   .put(updateRecipe)
   .delete(deleteRecipe)
+
+router.route('/:id/photo')
+  .put(uploadRecipeImage);
 
 module.exports = router;
