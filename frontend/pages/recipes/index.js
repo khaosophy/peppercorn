@@ -20,6 +20,7 @@ function Recipes({ response }) {
                   key={recipe._id}
                   id={recipe._id}
                   name={recipe.name}
+                  image={recipe.image}
                 />
               ))}
               </div>

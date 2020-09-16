@@ -6,8 +6,10 @@ const RecipeCard = (props) => (
     <div className="card__header">
       <Link href={`/recipes/${props.id}`}>
         <a>
+          {/* todo: better 'NO IMAGE' */}
+          {/* todo: abstract the image domain & path */}
           <img
-            src="https://baconmockup.com/250/150"
+            src={props.image ? `http://localhost:5000/uploads/${props.image}` : 'https://baconmockup.com/250/150'}
             alt={`${props.name}`}
             className="card__image"
           />
