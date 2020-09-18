@@ -29,11 +29,19 @@ export default function Recipe(props) {
 
   if(!response.success) return <h1>Error Retrieving Recipe</h1>
 
-  const { name, instructions, description, servings } = response.data;
+  const { 
+    name,
+    instructions,
+    description,
+    servings,
+    image
+  } = response.data;
+  
   return (
     <Layout title={name}>
       <h1>{name}</h1>
-      
+      {/* todo: abstract domain and path below */}
+      <img src={`http://localhost:5000/uploads/${image}`} style={{ width: '500px' }} />
       <div className="recipe__utility">
         {servings && <p className="recipe__servings">Serves {servings}</p>}
         <Link href={`/recipes/${recipeId}/edit`}>
