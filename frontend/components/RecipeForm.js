@@ -28,6 +28,21 @@ class RecipeForm extends React.Component {
     this.setState({ image: event.target.files[0] });
   }
 
+  static async uploadImage(id, image) {
+    const imageUpload = await fetch(`http://localhost:5000/api/v1/recipes/${id}/photo`, {
+          method: 'PUT',
+          body: image,
+        })
+
+        const imageUploadResponse = await imageUpload.json();
+        if(imageUploadResponse.success) {
+          console.log('image uploaded!');
+        } else {
+          console.error('image failed to upload...');
+          /* todo: if the image fails, show failure */
+        }
+  }
+
   async handleSubmit(event) {
     event.preventDefault();
     
@@ -50,6 +65,10 @@ class RecipeForm extends React.Component {
       if(response.success) {
         //todo: redirect to Recipe page and show success notice
         console.log('update successful!');
+        console.log('updating image...');
+
+        RecipeForm.uploadImage(response.data._id, imageData);
+
       } else {
         //todo: show failure
         console.error('update failed!');
@@ -69,18 +88,7 @@ class RecipeForm extends React.Component {
         console.log('new recipe created!');
         console.log('adding image...');
 
-        const imageUpload = await fetch(`http://localhost:5000/api/v1/recipes/${response.data._id}/photo`, {
-          method: 'PUT',
-          body: imageData,
-        })
-
-        const imageUploadResponse = await imageUpload.json();
-        if(imageUploadResponse.success) {
-          console.log('image uploaded!');
-        } else {
-          console.error('image failed to upload...');
-        }
-
+        RecipeForm.uploadImage(response.data._id, imageData);
 
         // todo: redirect to new Recipe page and show success notice
         // maybe include a link to create another recipe?
