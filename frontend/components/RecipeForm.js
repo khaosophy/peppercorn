@@ -10,22 +10,33 @@ class RecipeForm extends React.Component {
       name: this.props.data ? this.props.data.name : '',
       servings: this.props.data ? this.props.data.servings : '',
       description: this.props.data ? this.props.data.description : '',
+      image: this.props.data ? this.props.image : '',
       // type: this.props.data.type || '',
     }
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleImageChange = this.handleImageChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
     const { name, value } = event.target;
     this.setState({ [name]: value });
+  }  
+
+  handleImageChange(event) {
+    this.setState({ image: event.target.files[0] });
   }
 
   async handleSubmit(event) {
     event.preventDefault();
     
-    const data = JSON.stringify({...this.state});
+    let imageData = new FormData();
+    imageData.append('file', this.state.image);
+    
+    let data = {...this.state};
+    delete data.image;
+    data = JSON.stringify(data);
 
     if(this.props.action === 'edit') {
       const res = await fetch(`http://localhost:5000/api/v1/recipes/${this.props.recipeId}`, {
@@ -55,9 +66,24 @@ class RecipeForm extends React.Component {
       });
       const response = await res.json();
       if(response.success) {
-        //todo: redirect to new Recipe page and show success notice
-        // maybe include a link to create another recipe?
         console.log('new recipe created!');
+        console.log('adding image...');
+
+        const imageUpload = await fetch(`http://localhost:5000/api/v1/recipes/${response.data._id}/photo`, {
+          method: 'PUT',
+          body: imageData,
+        })
+
+        const imageUploadResponse = await imageUpload.json();
+        if(imageUploadResponse.success) {
+          console.log('image uploaded!');
+        } else {
+          console.error('image failed to upload...');
+        }
+
+
+        // todo: redirect to new Recipe page and show success notice
+        // maybe include a link to create another recipe?
       } else {
         // todo: show failure
         console.error('update failed!');
@@ -71,7 +97,19 @@ class RecipeForm extends React.Component {
         id={this.props.id}
         className="recipe-form"
         onSubmit={this.handleSubmit}
+        encType="multipart/form-data"
       >
+        <div className="field">
+          <label className="field__label">Image</label>
+          <input
+            type="file"
+            className="field__input"
+            name="image"
+            // value={this.state.image.name}
+            onChange={this.handleImageChange}
+            accept="image/*"
+          />
+        </div>
         <InputField 
           type="text"
           label="Recipe Name"
