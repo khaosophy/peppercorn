@@ -1,10 +1,12 @@
 import { useState } from 'react';
+import { Router, useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import InputField from './InputField';
 import SelectField from './SelectField';
 import TextArea from './TextArea';
 
 function RecipeForm(props) {
+  const router = useRouter();
   const [ name, setName ] = useState(props.data ? props.data.name : '');
   const [ description, setDescription ] = useState(props.description ? props.data.description : '');
   const [ servings, setServings ] = useState(props.data ? props.data.servings : '');
@@ -48,11 +50,13 @@ function RecipeForm(props) {
       });
       const response = await res.json();
       if(response.success) {
-        //todo: redirect to Recipe page and show success notice
-        console.log('update successful!');
-        
-        console.log('updating image...');
-        uploadImage(response.data._id);
+        //todo: show success notice
+        const {_id: recipeId} = response.data;
+        uploadImage(recipeId)
+          .then(() => router.push(`/recipes/${recipeId}`))
+          .catch(() => 
+            console.error('error uploading image')
+          )
 
       } else {
         //todo: show failure
@@ -70,12 +74,14 @@ function RecipeForm(props) {
       });
       const response = await res.json();
       if(response.success) {
-        console.log('new recipe created!');
-        
-        console.log('adding image...');
-        uploadImage(response.data._id);
+        const {_id: recipeId} = response.data;
+        uploadImage(recipeId)
+          .then(() => router.push(`/recipes/${recipeId}`))
+          .catch(() => 
+            console.error('error uploading image')
+          )
 
-        // todo: redirect to new Recipe page and show success notice
+        // todo: show success notice
         // maybe include a link to create another recipe?
       } else {
         // todo: show failure
