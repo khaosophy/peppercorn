@@ -134,7 +134,11 @@ function RecipeForm(props) {
         onChange={this.handleChange}
         options={[{value: 'onePot', text: 'One Pot'}, {value: 'side', text: 'Side'}, {value: 'main', text: 'Main'}]}
       /> */}
-      <button>Save Recipe</button>
+      <button type="submit">Save Recipe</button>
+      <button onClick={(e) => {
+        e.preventDefault(); // prevents form submission
+        history.back();
+      }}>Cancel</button>
     </form>
   )
 }

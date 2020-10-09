@@ -39,6 +39,9 @@ export default function Recipe(props) {
   
   return (
     <Layout title={name}>
+      <Link href="/recipes">
+        <a>&larr; Back to Recipes</a>
+      </Link>
       <h1>{name}</h1>
       {/* todo: abstract domain and path below */}
       <img src={`http://localhost:5000/uploads/${image}`} style={{ width: '500px' }} />
