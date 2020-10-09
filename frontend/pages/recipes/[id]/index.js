@@ -62,7 +62,7 @@ export default function Recipe(props) {
       {description && <p className="recipe__description">{description}</p>}
 
       <ol className="recipe__steps">
-        {instructions.map((step, i) => <li key={i}>{step}</li>)}
+        {instructions.map((step) => <li key={step.id}>{step.text}</li>)}
       </ol>
     </Layout>
   )
