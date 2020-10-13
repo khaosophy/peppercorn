@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import InputField from './InputField';
 import SelectField from './SelectField';
 import TextArea from './TextArea';
+import Instructions from './Instructions';
 
 function RecipeForm(props) {
   const router = useRouter();
@@ -11,6 +12,7 @@ function RecipeForm(props) {
   const [ description, setDescription ] = useState(props.description ? props.data.description : '');
   const [ servings, setServings ] = useState(props.data ? props.data.servings : '');
   const [ image, setImage ] = useState(props.data ? props.data.image : '');
+  const [ instructions, setInstructions ] = useState(props.data ? props.data.instructions : []);
 
   const uploadImage = async (id) => {
     let imageData = new FormData();
@@ -33,10 +35,19 @@ function RecipeForm(props) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     
+    const cleanedInstructions = instructions.map((step) => (
+      // remove _ID from this data so that it doesn't conflict with Mongoose
+      {
+        position: step.position,
+        text: step.text,
+      }
+    ));
+
     let data = {
       name,
       description,
       servings,
+      instructions: cleanedInstructions,
     };
     data = JSON.stringify(data);
 
@@ -133,6 +144,9 @@ function RecipeForm(props) {
         onChange={(e) => setServings(e.target.value)}
         value={servings}
       />
+
+      <Instructions steps={instructions} setInstructions={setInstructions} />
+      
       {/* todo: instructions / steps */}
       {/* <SelectField 
         label="Recipe Type"

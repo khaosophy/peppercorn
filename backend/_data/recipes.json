@@ -6,10 +6,10 @@
     "type": "One Pot",
     "servings": 6,
     "instructions": [
-      {"id": 1, "text": "Cook the chicken"},
-      {"id": 2, "text": "Cook the rice"},
-      {"id": 3, "text": "Make the rue"} ,
-      {"id": 4, "text": "Serve"}
+      {"position": 1, "text": "Cook the chicken"},
+      {"position": 2, "text": "Cook the rice"},
+      {"position": 3, "text": "Make the rue"} ,
+      {"position": 4, "text": "Serve"}
     ]
   },
   {
@@ -19,11 +19,11 @@
     "type": "One Pot",
     "servings": 4,
     "instructions": [
-      {"id": 1, "text": "Cut the carrots"}, 
-      {"id": 2, "text": "Bread the chicken"}, 
-      {"id": 3, "text": "Cook in oven for 15-20 minutes at 425 degrees Fahrenheit"}, 
-      {"id": 4, "text": "Make couscous"},
-      {"id": 5, "text": "Serve!"}
+      {"position": 1, "text": "Cut the carrots"}, 
+      {"position": 2, "text": "Bread the chicken"}, 
+      {"position": 3, "text": "Cook in oven for 15-20 minutes at 425 degrees Fahrenheit"}, 
+      {"position": 4, "text": "Make couscous"},
+      {"position": 5, "text": "Serve!"}
     ]
   },
   {
@@ -33,11 +33,11 @@
     "type": "Side",
     "servings": 5,
     "instructions": [
-      {"id": 1, "text": "Sautee onions"},
-      {"id": 2, "text": "Toast arborio rice"}, 
-      {"id": 3, "text": "Add chicken broth"},
-      {"id": 4, "text": "Pressure cook for 7 minutes"},
-      {"id": 5, "text": "Serve!"}
+      {"position": 1, "text": "Sautee onions"},
+      {"position": 2, "text": "Toast arborio rice"}, 
+      {"position": 3, "text": "Add chicken broth"},
+      {"position": 4, "text": "Pressure cook for 7 minutes"},
+      {"position": 5, "text": "Serve!"}
     ]
   }
 ]
