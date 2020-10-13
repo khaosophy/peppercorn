@@ -52,12 +52,15 @@ function RecipeForm(props) {
       if(response.success) {
         //todo: show success notice
         const {_id: recipeId} = response.data;
-        uploadImage(recipeId)
-          .then(() => router.push(`/recipes/${recipeId}`))
-          .catch(() => 
-            console.error('error uploading image')
-          )
-
+        if(image) {
+          uploadImage(recipeId)
+            .then(() => router.push(`/recipes/${recipeId}`))
+            .catch(() => 
+              console.error('error uploading image')
+            )
+        } else {
+          router.push(`/recipes/${recipeId}`);
+        }
       } else {
         //todo: show failure
         console.error('update failed!');
@@ -75,11 +78,14 @@ function RecipeForm(props) {
       const response = await res.json();
       if(response.success) {
         const {_id: recipeId} = response.data;
+        if(image) {
         uploadImage(recipeId)
           .then(() => router.push(`/recipes/${recipeId}`))
           .catch(() => 
             console.error('error uploading image')
           )
+        } else {
+          router.push(`/recipes/${recipeId}`);        }
 
         // todo: show success notice
         // maybe include a link to create another recipe?
