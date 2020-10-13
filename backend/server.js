@@ -29,6 +29,7 @@ connectDB();
 
 // Get route files
 const recipes = require('./routes/recipes');
+const ingredients = require('./routes/ingredients');
 
 // Initiate!
 const app = express();
@@ -46,6 +47,7 @@ app.use(cors({
 
 // Set up routes
 app.use('/api/v1/recipes', recipes);
+app.use('/api/v1/ingredients', ingredients);
 
 app.use(errorHandler);
 

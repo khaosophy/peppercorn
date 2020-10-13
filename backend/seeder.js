@@ -7,6 +7,7 @@ dotenv.config();
 
 // Load models
 const Recipe = require('./models/Recipe');
+const Ingredient = require('./models/Ingredient');
 
 // Connect to DB
 mongoose.connect(process.env.MONGO_URI, {
@@ -18,11 +19,13 @@ mongoose.connect(process.env.MONGO_URI, {
 
 // Read JSON files
 const recipes = JSON.parse(fs.readFileSync(`${__dirname}/_data/recipes.json`, 'utf-8'));
+const ingredients = JSON.parse(fs.readFileSync(`${__dirname}/_data/ingredients.json`, 'utf-8'));
 
 // Import into DB
 const importData = async () => {
   try {
     await Recipe.create(recipes);
+    await Ingredient.create(ingredients);
     console.log(colors.green.inverse('Data imported.'))
   } catch (err) {
     console.error(err);
@@ -33,6 +36,7 @@ const importData = async () => {
 const deleteData = async () => {
   try {
     await Recipe.deleteMany();
+    await Ingredient.deleteMany();
     console.log(colors.red.inverse('Data deleted.'))
   } catch (err) {
     console.error(err);
