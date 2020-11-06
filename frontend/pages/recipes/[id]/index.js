@@ -32,6 +32,7 @@ export default function Recipe(props) {
   const { 
     name,
     instructions,
+    ingredients,
     description,
     servings,
     image
@@ -61,6 +62,12 @@ export default function Recipe(props) {
 
       {description && <p className="recipe__description">{description}</p>}
 
+      <h3>Ingredients</h3>
+      <ul className="recipe__ingredients">
+        {ingredients.map((ingredient, _i) => <li key={_i}>{ingredient}</li>)}
+      </ul>
+
+      <h3>Instructions</h3>
       <ol className="recipe__steps">
         {instructions.map((step) => <li key={step._id}>{step.text}</li>)}
       </ol>
