@@ -15,7 +15,7 @@ const RecipeSchema = new mongoose.Schema({
   },
   image: String,
   servings: Number,
-  ingredients: String,  // todo: this will be another data type
+  ingredients: [String],
   instructions: [{
     position: Number,
     text: String,

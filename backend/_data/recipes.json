@@ -3,7 +3,23 @@
     "_id": "5f88a72b3025014f44e5a02e",
 		"name": "Japanese Curry",
     "description": "Delicious chicken curry and rice inspired by the classic Japanese dish",
-    "ingredients": [],
+    "ingredients": [
+      "1 tsp. oil",
+      "1 onion, diced",
+      "2 lbs chicken thighs, cut into chunks",
+      "2 carrots, cut into chunks",
+      "2 gold potatoes, cut into chunks",
+      "4 cups water",
+      "1 apple, peeled and pureed",
+      "2 tsp. kosher salt",
+      "1 tsp. curry powder",
+      "2 tbsp. curry power",
+      "3 tbsp. butter",
+      "1/4 cup flower",
+      "1/2 tsp. cayenne pepper",
+      "1 tbsp. ketchup",
+      "1 tbsp. worcestershire sauce"
+    ],
     "type": "One Pot",
     "servings": 6,
     "instructions": [
@@ -17,7 +33,16 @@
     "_id": "5f88a72b3025014f44e5a033",
     "name": "Crispy Chicken Parmesan",
     "description": "",
-    "ingredients": [],
+    "ingredients": [
+      "8 carrots",
+      "4 scallions",
+      "1/2 cup panko breadcrumbs",
+      "1/2 cup parmesan cheese",
+      "24 ounces chicken breasts",
+      "4 tbsp. sour cream",
+      "1 cup couscous",
+      "4 tbsp garlic herb butter"
+    ],
     "type": "One Pot",
     "servings": 4,
     "instructions": [
@@ -33,9 +58,10 @@
     "name": "Risotto",
     "description": "",
     "ingredients": [
-      {"id": "5f88a72b3025014f44e5a04a", "quantity": "2", "measurement": "cups"},
-      {"id": "5f88a72b3025014f44e5a04c", "quantity": "2", "measurement": "cups"},
-      {"id": "5f88a72b3025014f44e5a04e", "quantity": "1"}
+      "2 cups arborio rice",
+      "4 cups chicken broth",
+      "1 onion, chopped",
+      "1 tbsp. butter"
     ],
     "type": "Side",
     "servings": 5,

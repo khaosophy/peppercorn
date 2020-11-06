@@ -5,6 +5,7 @@ import InputField from './InputField';
 import SelectField from './SelectField';
 import TextArea from './TextArea';
 import Instructions from './Instructions';
+import Ingredients from './Ingredients';
 
 function RecipeForm(props) {
   const router = useRouter();
@@ -12,6 +13,7 @@ function RecipeForm(props) {
   const [ description, setDescription ] = useState(props.description ? props.data.description : '');
   const [ servings, setServings ] = useState(props.data ? props.data.servings : '');
   const [ image, setImage ] = useState(props.data ? props.data.image : '');
+  const [ ingredients, setIngredients ] = useState(props.data ? props.data.ingredients : []);
   const [ instructions, setInstructions ] = useState(props.data ? props.data.instructions : []);
 
   const uploadImage = async (id) => {
@@ -47,6 +49,7 @@ function RecipeForm(props) {
       name,
       description,
       servings,
+      ingredients,
       instructions: cleanedInstructions,
     };
     data = JSON.stringify(data);
@@ -145,9 +148,10 @@ function RecipeForm(props) {
         value={servings}
       />
 
+      <Ingredients ingredients={ingredients} setIngredients={setIngredients} />
+
       <Instructions steps={instructions} setInstructions={setInstructions} />
       
-      {/* todo: instructions / steps */}
       {/* <SelectField 
         label="Recipe Type"
         name="type"

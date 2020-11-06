@@ -47,4 +47,9 @@ function Instructions(props) {
   )
 }
 
+Instructions.propTypes = {
+  steps: PropTypes.array.isRequired, // todo array of shape
+  setInstructions: PropTypes.func.isRequired,
+}
+
 export default Instructions;
