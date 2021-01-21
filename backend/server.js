@@ -28,6 +28,7 @@ const connectDB = async () => {
 connectDB();
 
 // Get route files
+const authentication = require('./routes/auth');
 const recipes = require('./routes/recipes');
 const ingredients = require('./routes/ingredients');
 
@@ -46,6 +47,7 @@ app.use(cors({
 }));
 
 // Set up routes
+app.use('/api/v1/auth', authentication);
 app.use('/api/v1/recipes', recipes);
 app.use('/api/v1/ingredients', ingredients);
 
