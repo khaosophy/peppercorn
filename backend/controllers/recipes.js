@@ -5,9 +5,9 @@ const ErrorResponse = require('../utils/errorResponse');
 
 // @desc      Get all recipes for user
 // @route     GET /api/v1/recipes
-// @access    Public
+// @access    Private
 exports.getRecipes = asyncHandler(async (req, res, next) => {
-  const recipes = await Recipe.find();
+  const recipes = await Recipe.find({ user: req.user.id });
 
   res.status(200).json({
     success: true,
@@ -18,12 +18,16 @@ exports.getRecipes = asyncHandler(async (req, res, next) => {
 
 // @desc      Get single recipe based on ID
 // @route     GET /api/v1/recipes/:id
-// @access    Public
+// @access    Private
 exports.getRecipe = asyncHandler(async (req, res, next) => {
   const recipe = await Recipe.findById(req.params.id);
 
   if(!recipe) {
     return next(new ErrorResponse(`Recipe not found with id of ${req.params.id}`, 404));
+  }
+
+  if(recipe.user.toString() !== req.user.id) {
+    return next(new ErrorResponse(`Recipe ${req.params.id} is not available for user ${req.user.id}`));
   }
 
   res.status(200).json({
@@ -34,8 +38,9 @@ exports.getRecipe = asyncHandler(async (req, res, next) => {
 
 // @desc      Create new recipe
 // @route     POST /api/v1/recipes
-// @access    Public
+// @access    Private
 exports.createRecipe = asyncHandler(async (req, res, next) => {
+  req.body.user = req.user.id;
   const recipe = await Recipe.create(req.body);
 
   res.status(201).json({
@@ -46,16 +51,22 @@ exports.createRecipe = asyncHandler(async (req, res, next) => {
 
 // @desc      Update recipe based on ID
 // @route     PUT /api/v1/recipes/:id
-// @access    Public
+// @access    Private
 exports.updateRecipe = asyncHandler(async (req, res, next) => {
-  const recipe = await Recipe.findByIdAndUpdate(req.params.id, req.body, {
-    new: true,
-    runValidators: true,
-  });
+  let recipe = await Recipe.findById(req.params.id);
 
   if(!recipe) {
     return next(new ErrorResponse(`Recipe not found with id of ${req.params.id}`, 404));
   }
+
+  if(recipe.user.toString() !== req.user.id) {
+    return next(new ErrorResponse(`User ${req.user.id} is not authorized to update recipe ${req.params.id}`));
+  }
+
+  recipe = await Recipe.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+    runValidators: true,
+  });
 
   res.status(200).json({
     success: true,
@@ -65,13 +76,19 @@ exports.updateRecipe = asyncHandler(async (req, res, next) => {
 
 // @desc      Delete recipe based on ID
 // @route     DELETE /api/v1/recipes/:id
-// @access    Public
+// @access    Private
 exports.deleteRecipe = asyncHandler(async (req, res, next) => {
-  const recipe = await Recipe.findByIdAndDelete(req.params.id);
+  const recipe = await Recipe.findById(req.params.id);
 
   if(!recipe) {
     return next(new ErrorResponse(`Recipe not found with id of ${req.params.id}`, 404));
   }
+
+  if(recipe.user.toString() !== req.user.id) {
+    return next(new ErrorResponse(`User ${req.user.id} is not authorized to delete recipe ${req.params.id}`));
+  }
+
+  recipe.remove();
 
   res.status(200).json({
     success: true,
@@ -81,12 +98,16 @@ exports.deleteRecipe = asyncHandler(async (req, res, next) => {
 
 // @desc      Upload image for recipe
 // @route     PUT /api/v1/recipes/:id/photo
-// @access    Public
+// @access    Private
 exports.uploadRecipeImage = asyncHandler(async (req, res, next) => {
   const recipe = await Recipe.findById(req.params.id);
 
   if(!recipe) {
     return next(new ErrorResponse(`No recipe with id of ${req.params.id} exists.`, 404));
+  }
+
+  if(recipe.user.toString() !== req.user.id) {
+    return next(new ErrorResponse(`User ${req.user.id} is not authorized to update recipe ${req.params.id}`));
   }
 
   if(!req.files) {

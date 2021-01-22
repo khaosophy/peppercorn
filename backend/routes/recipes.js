@@ -8,17 +8,18 @@ const {
   deleteRecipe,
   uploadRecipeImage
 } = require('../controllers/recipes');
+const { protect } = require('../middleware/auth');
 
 router.route('/')
-  .get(getRecipes)
-  .post(createRecipe);
+  .get(protect, getRecipes)
+  .post(protect, createRecipe);
 
 router.route('/:id')
-  .get(getRecipe)
-  .put(updateRecipe)
-  .delete(deleteRecipe)
+  .get(protect, getRecipe)
+  .put(protect, updateRecipe)
+  .delete(protect, deleteRecipe)
 
 router.route('/:id/photo')
-  .put(uploadRecipeImage);
+  .put(protect, uploadRecipeImage);
 
 module.exports = router;

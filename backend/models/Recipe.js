@@ -24,8 +24,11 @@ const RecipeSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  user: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'User',
+    required: true,
+  }
 });
-
-// todo: map to certain users
 
 module.exports = mongoose.model('Recipe', RecipeSchema);
