@@ -1,0 +1,14 @@
+[
+  {
+    "_id": "6009aeab7ab1f267c84002e7",
+    "name": "Casey James",
+    "email": "caseyjames@gmail.com",
+    "password": "123456"
+  },
+  {
+    "_id": "600af6e24d814454085ba6af",
+    "name": "Test Account",
+    "email": "test@gmail.com",
+    "password": "123456"
+  }
+]

@@ -3,6 +3,7 @@
     "_id": "5f88a72b3025014f44e5a02e",
 		"name": "Japanese Curry",
     "description": "Delicious chicken curry and rice inspired by the classic Japanese dish",
+    "user": "6009aeab7ab1f267c84002e7",
     "ingredients": [
       "1 tsp. oil",
       "1 onion, diced",
@@ -33,6 +34,7 @@
     "_id": "5f88a72b3025014f44e5a033",
     "name": "Crispy Chicken Parmesan",
     "description": "",
+    "user": "6009aeab7ab1f267c84002e7",
     "ingredients": [
       "8 carrots",
       "4 scallions",
@@ -57,6 +59,7 @@
     "_id": "5f88a72b3025014f44e5a039",
     "name": "Risotto",
     "description": "",
+    "user": "600af6e24d814454085ba6af",
     "ingredients": [
       "2 cups arborio rice",
       "4 cups chicken broth",
