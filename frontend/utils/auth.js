@@ -17,8 +17,7 @@ export async function login(userData) {
   // set token and return user info
   try {
     const config = { headers: { 'Content-Type': 'application/json' } };
-    /* todo: proxy? */
-    const response = await axios.post('http://localhost:5000/api/v1/auth/login', userData, config);
+    const response = await axios.post(`${process.env.API_URL}/auth/login`, userData, config);
     const { token } = response.data;
     localStorage.setItem('token', token);
     setAuthToken(token);
