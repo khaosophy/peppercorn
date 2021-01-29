@@ -1,6 +1,9 @@
 import Link from 'next/link';
+import { useContext } from 'react';
+import UserContext from '../context/user';
 
 export default function Header() {
+  const { user, setUser } = useContext(UserContext);
   return (
     <header>
       {/* logo goes here */}
@@ -11,16 +14,24 @@ export default function Header() {
               <a>Recipes</a>
             </Link>
           </li>
-          <li>
-            <Link href="/login">
-              <a>Login</a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/register">
-              <a>Register</a>
-            </Link>
-          </li>
+          {(user) ? (
+            <li>
+              <Link href="/logout">
+                <a>Log out</a>
+              </Link>
+            </li>
+          ) : (<>
+            <li>
+              <Link href="/login">
+                <a>Login</a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/register">
+                <a>Register</a>
+              </Link>
+            </li>
+          </>)}
         </ul>
       </nav>
     </header>
