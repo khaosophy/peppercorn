@@ -2,7 +2,7 @@ import { useState } from 'react';
 import InputField from '../components/InputField';
 
 export default function Login() {
-  const [ email, setEmail ] = useState<String>('');
+  const [ email, setEmail ] = useState('');
   const [ password, setPassword ] = useState('');
 
   const handleLogin = () => {
@@ -17,14 +17,14 @@ export default function Login() {
           type="email"
           label="Email"
           value={email}
-          onChange={setEmail}
+          onChange={(e) => setEmail(e.target.value)}
           required
         />
         <InputField
           type="password"
           label="Password"
           value={password}
-          onChange={setPassword}
+          onChange={(e) => setPassword(e.target.value)}
           required
         />
         <button>Login</button>
