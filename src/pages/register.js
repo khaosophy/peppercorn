@@ -1,13 +1,27 @@
 'use client';
 import { useState } from 'react';
+import { useRouter } from 'next/router';
+import supabase from '../lib/supabase';
 import InputField from '../components/InputField';
 
 export default function Register() {
+  const router = useRouter();
   const [ email, setEmail ] = useState('');
-  const [ password, setPassword ] = useState('');
+  const [ password, setPassword ] = useState(''); // TODO: password should be at least six characters long
 
-  const handleRegistration = () => {
-    console.log('register');
+  const handleRegistration = async (e) => {
+    e.preventDefault();
+    console.log('registering...');
+
+    const { data, error } = await supabase.auth.signUp({ email, password });
+
+    if (error) {
+      /* TODO: display error */
+      return console.log(error);
+    }
+
+    console.log(data);
+    router.push('/');
   }
 
   return (
@@ -35,3 +49,4 @@ export default function Register() {
     </main>
   )
 }
+
