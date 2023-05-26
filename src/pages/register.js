@@ -17,7 +17,7 @@ export default function Register() {
 
     if (error) {
       /* TODO: display error */
-      return console.log(error);
+      return console.error(error);
     }
 
     console.log(data);
