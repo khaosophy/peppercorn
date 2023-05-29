@@ -1,10 +1,4 @@
-/**
- * TODO:
- * In order to useState, 'use client' is required.
- * But how do we handle the form submission and saving the data
- * without a the formData state?
- */
-'use client';
+
 import { useState, useEffect, use } from 'react';
 import router from 'next/router';
 import routes from '../../routes.config';
