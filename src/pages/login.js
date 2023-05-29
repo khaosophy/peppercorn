@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 import routes from '../routes.config';
 import supabase from '../lib/supabase';
 import InputField from '../components/InputField';
 import Button from '../components/Button';
-import Link from 'next/link';
 
 export default function Login() {
   const router = useRouter();
@@ -54,7 +54,7 @@ export default function Login() {
         </form>
 
         <p className="mt-6 text-center text-sm text-gray-500">
-          Don't have an account?{' '}
+          Need an account?{' '}
           <Link href={routes.register} className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
             Sign up now.
           </Link>
