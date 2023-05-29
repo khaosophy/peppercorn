@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
+import routes from '../routes.config';
 import supabase from '../lib/supabase';
 
 export default function Login() {
@@ -14,7 +15,7 @@ export default function Login() {
       return console.error(error);
     }
 
-    router.push('/');
+    router.push(routes.home);
   }, [router]);
 
   return (

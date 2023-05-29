@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import routes from '../routes.config';
 import supabase from '../lib/supabase';
 import InputField from '../components/InputField';
 
@@ -21,7 +22,7 @@ export default function Register() {
     }
 
     console.log(data);
-    router.push('/');
+    router.push(routes.home);
   }
 
   return (
