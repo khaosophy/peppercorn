@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react';
-import { Menu } from '@headlessui/react'
-import { CgMoreVerticalAlt } from 'react-icons/cg';
 import supabase from '../../lib/supabase';
 import Link from '../../components/Link';
-import Button from '../../components/Button';
+import ActionMenu from '../../components/ActionMenu';
 
 export default function Recipes() {
   const [recipes, setRecipes] = useState([]);
@@ -66,20 +64,17 @@ function RecipeList({ recipes, setRecipes }) {
             <p className="text-sm font-semibold leading-6 text-gray-900">{recipe.name}</p>
             <p className="mt-1 text-xs leading-5 text-gray-500">Serves {recipe.servings}</p>
           </div>
-          {/* todo: extract "menu" into its own component (and probably find a better name for it) */}
-          {/* todo: include transition */}
-          {/* todo: keyboard navigation */}
-          <Menu as="div" className="relative">
-            <Menu.Button><CgMoreVerticalAlt size="1.25rem" /></Menu.Button>
-            <Menu.Items className="absolute flex flex-col right-0 mt-2 w-32 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-              <Menu.Item>
-                <Button>Edit</Button>
-              </Menu.Item>
-              <Menu.Item>
-                <Button onClick={() => handleDelete(recipe.id)}>Delete</Button>
-              </Menu.Item>
-            </Menu.Items>
-          </Menu>
+          <ActionMenu items={[
+            {
+              id: `edit-${recipe.id}`,
+              label: 'Edit',
+            },
+            {
+              id: `delete-${recipe.id}`,
+              label: 'Delete',
+              onClick: () => handleDelete(recipe.id),
+            },
+          ]} />
         </li>
       ))}
     </ul>
