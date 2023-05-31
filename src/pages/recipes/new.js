@@ -22,7 +22,7 @@ export default function NewRecipe() {
       .insert({
         name: formData.name,
         servings: formData.servings,
-        // created_by: userId
+        created_by: userId,
       });
     
     if (error) {

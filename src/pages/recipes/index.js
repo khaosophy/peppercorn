@@ -5,23 +5,24 @@ import Link from '../../components/Link';
 export default function Recipes() {
   /**
    * TODO:
-   * * fetch only recipes that the user created
-   *   * when saving, pass the user id (created_by) to the recipe
-   *   * see the Supabase permission templates
    * * style the list of recipes
    */
   const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
     const getRecipes = async () => {
-    const { data, error } = await supabase.from('recipes').select('*');
-
-      if (error) {
-        /* TODO: display error */
-        return console.error(error);
+      const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+      if (!session || sessionError) {
+        return router.push(routes.login);
       }
-      console.log(data);
-      setRecipes(data);
+      const userId = session.user.id;
+
+      const { data: recipes, error: recipeError } = await supabase.from('recipes').select('*').eq('created_by', userId);
+      if (recipeError) {
+        /* TODO: display error */
+        return console.error(recipeError);
+      }
+      setRecipes(recipes);
     }
 
     getRecipes();
