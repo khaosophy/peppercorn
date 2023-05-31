@@ -68,6 +68,7 @@ function RecipeList({ recipes, setRecipes }) {
             {
               id: `edit-${recipe.id}`,
               label: 'Edit',
+              href: `/recipes/${recipe.id}/edit`,
             },
             {
               id: `delete-${recipe.id}`,

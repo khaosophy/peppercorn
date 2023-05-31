@@ -9,6 +9,8 @@ const routes = {
   // recipes
   recipes: '/recipes',
   newRecipe: '/recipes/new',
+  recipe: '/recipes/:id',
+  editRecipe: '/recipes/:id/edit',
 }
 
 export default routes;
