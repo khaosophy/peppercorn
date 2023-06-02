@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import classNames from 'classnames';
 import supabase from '../../lib/supabase';
 import Link from '../../components/Link';
 import ActionMenu from '../../components/ActionMenu';
@@ -29,8 +30,14 @@ export default function Recipes() {
   }, []);
 
   return (
-    <main className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-      <h2>Recipes</h2>
+    <main className={classNames(
+      'max-w-6xl mx-auto',
+      'flex flex-1 flex-col justify-center',
+      'min-h-full py-4 px-2',
+    )}>
+      <h2 className="mt-10 text-2xl font-bold leading-9 tracking-tight text-gray-900">
+        Recipes
+      </h2>
       {recipes.length > 0 ? (<RecipeList recipes={recipes} setRecipes={setRecipes} />) : <p>No recipes found.</p>}
       <Link href="/recipes/new">Add a new recipe</Link>
     </main>
@@ -57,7 +64,7 @@ function RecipeList({ recipes, setRecipes }) {
 
 
   return (
-    <ul role="list" className="divide-y divide-gray-100">
+    <ul role="list" className="divide-y divide-gray-100 my-3">
       {recipes.map((recipe) => (
         <li
           key={recipe.id}
