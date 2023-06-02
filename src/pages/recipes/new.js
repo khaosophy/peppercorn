@@ -1,6 +1,7 @@
 
-import { useState, useEffect, use } from 'react';
+import { useState, useEffect } from 'react';
 import router from 'next/router';
+import classNames from 'classnames';
 import routes from '../../routes.config';
 import supabase from '../../lib/supabase';
 import InputField from '../../components/InputField';
@@ -45,8 +46,12 @@ export default function NewRecipe() {
   }, []);
 
   return (
-    <main className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-      <h2>Add a new recipe</h2>
+    <main className={classNames(
+      'max-w-6xl mx-auto',
+      'flex flex-1 flex-col justify-center',
+      'min-h-full py-4 px-2',
+    )}>
+      <h2 className="mt-10 text-2xl font-bold leading-9 tracking-tight text-gray-900">Add a new recipe</h2>
       <form
         className="mt-6 max-w-md space-y-6"
         onSubmit={(e) => handleSubmit(e)}
