@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 import supabase from '../../lib/supabase';
 import Link from '../../components/Link';
 import ActionMenu from '../../components/ActionMenu';
+import routes from '../../routes.config';
 
 export default function Recipes() {
+  const router = useRouter();
   const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {

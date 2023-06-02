@@ -23,7 +23,7 @@ export default function Login() {
     }
 
     console.log(data);
-    router.push(routes.home);
+    router.push(routes.recipes);
   }
 
   return (
