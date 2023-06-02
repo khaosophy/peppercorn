@@ -1,9 +1,14 @@
+import classNames from 'classnames';
 import Link from 'next/link';
 import routes from '../routes.config';
 
 export default function Home() {
   return (
-    <main>
+    <main className={classNames(
+      'max-w-6xl mx-auto',
+      'flex flex-1 flex-col justify-center',
+      'min-h-full py-4 px-2',
+    )}>
       <h3>Whatcha wanna do?</h3>
       <ul>
         <li>Already have an account? <Link href={routes.login}>Log in.</Link></li>
