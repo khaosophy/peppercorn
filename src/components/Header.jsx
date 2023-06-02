@@ -36,7 +36,10 @@ const MainNav = () => {
           <Link href={routes.recipes} className={linkStyles}>Recipes</Link>
         </li>
         <li>
-          <Link href={routes.login} className={linkStyles}>Login</Link>
+          <Link href={routes.mealplans} className={linkStyles}>Meal Plan</Link>
+        </li>
+        <li>
+          <Link href={routes.login} className={linkStyles}>Log In</Link>
         </li>
       </ul>
     </nav>
