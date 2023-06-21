@@ -1,4 +1,4 @@
-# Peppercorn: MealPlanner and Recipebook
+# Peppercorn: MealPlanner & Recipebook
 
 The goal of this application is to let users manage their recipes, and create mealplans from their recipebook. Once they've created their mealplan for the week (or weeks), they'd be able to generate a grocery list to take the time and hassle away from them! In my own experience, I found that these mealplans can help save money, reduce food waste, and even cause you to lose weight (a byproduct of eating out less)! Bringing this application online I hope will make the process even easier for me, and improve the lives of countless other individuals.
 
