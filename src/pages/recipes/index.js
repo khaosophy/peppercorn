@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import supabase from '../../lib/supabase';
 import Link from '../../components/Link';
 import ActionMenu from '../../components/ActionMenu';
@@ -30,7 +30,7 @@ export default function Recipes() {
   }, []);
 
   return (
-    <main className={classNames(
+    <main className={clsx(
       'max-w-6xl mx-auto',
       'flex flex-1 flex-col justify-center',
       'min-h-full py-4 px-2',

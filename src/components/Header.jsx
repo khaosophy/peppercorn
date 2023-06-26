@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
 import routes from '@/routes.config';
@@ -6,7 +6,7 @@ import routes from '@/routes.config';
 export default function Header() {
   return (
     <header className="border-b border-gray-400">
-      <div className={classNames(
+      <div className={clsx(
         'max-w-6xl mx-auto',
         'flex justify-between items-center',
         'py-2 px-2',
@@ -21,7 +21,7 @@ export default function Header() {
 }
 
 const MainNav = () => {
-  const linkStyles = classNames(
+  const linkStyles = clsx(
     'text-gray-900 hover:text-gray-700',
     'px-3 py-2 rounded-md text-sm font-medium',
     'hover:bg-gray-200',

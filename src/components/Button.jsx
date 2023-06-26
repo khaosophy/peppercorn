@@ -1,12 +1,12 @@
 import { forwardRef } from 'react';
-import classNames from 'classnames';
+import clsx from 'clsx';
 
 const Button = forwardRef(function Button(props, ref) {
   return (
     <button
       {...props}
       ref={ref}
-      className={classNames(
+      className={clsx(
         props.className,
         'rounded-md bg-indigo-600 hover:bg-indigo-500',
         'px-3 py-1.5',

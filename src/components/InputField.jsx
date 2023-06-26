@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import clsx from 'clsx';
 
 export default function InputField(props) {
   return (
@@ -10,7 +10,7 @@ export default function InputField(props) {
           {props.label}
         </label>
       <input
-          className={classNames(
+          className={clsx(
             'block w-full rounded-md border-0',
             'py-1.5 px-3',
             'shadow-sm ring-1 ring-inset ring-gray-300',

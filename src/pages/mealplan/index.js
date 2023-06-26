@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { useRouter } from 'next/router';
 import supabase from '../../lib/supabase';
 
@@ -43,7 +43,7 @@ export default function MealPlan() {
   }, []);
 
   return (
-    <main className={classNames(
+    <main className={clsx(
       'flex flex-row-reverse justify-center',
     )}>
       <div className="flex-1 p-4">

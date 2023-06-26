@@ -1,10 +1,10 @@
-import classNames from 'classnames';
+import clsx from 'clsx';
 import Link from 'next/link';
 import routes from '../routes.config';
 
 export default function Home() {
   return (
-    <main className={classNames(
+    <main className={clsx(
       'max-w-6xl mx-auto',
       'flex flex-1 flex-col justify-center',
       'min-h-full py-4 px-2',
