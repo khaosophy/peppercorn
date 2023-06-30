@@ -1,5 +1,8 @@
 import clsx from 'clsx';
 
+/* todo: replace with Salient Fields component */
+/* todo: add examples to storybook */
+
 export default function InputField(props) {
   return (
     <div className={props.className}>
