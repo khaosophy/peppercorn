@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import routes from '../routes.config';
 import supabase from '../lib/supabase';
-import InputField from '../components/InputField';
+import TextField from '../components/TextField';
 import Button from '../components/Button';
 import Link from '../components/Link';
 
@@ -34,14 +34,14 @@ export default function Login() {
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">      
         <form className="space-y-6" onSubmit={handleLogin}>
-          <InputField
+          <TextField
             type="email"
             label="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-          <InputField
+          <TextField
             type="password"
             label="Password"
             value={password}

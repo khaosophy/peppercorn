@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import routes from '../routes.config';
 import supabase from '../lib/supabase';
-import InputField from '../components/InputField';
+import TextField from '../components/TextField';
 import Button from '../components/Button';
 import Link from '../components/Link';
 
@@ -35,7 +35,7 @@ export default function Register() {
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         <form className="space-y-6" onSubmit={handleRegistration}>
-          <InputField
+          <TextField
             id="register-email"
             type="email"
             label="Email"
@@ -43,7 +43,7 @@ export default function Register() {
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-          <InputField
+          <TextField
             id="register-password"
             type="password"
             label="Password"

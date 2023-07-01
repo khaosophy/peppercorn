@@ -4,7 +4,7 @@ import router from 'next/router';
 import clsx from 'clsx';
 import routes from '../../routes.config';
 import supabase from '../../lib/supabase';
-import InputField from '../../components/InputField';
+import TextField from '../../components/TextField';
 import Button from '../../components/Button';
 
 export default function NewRecipe() {
@@ -56,7 +56,7 @@ export default function NewRecipe() {
         className="mt-6 max-w-md space-y-6"
         onSubmit={(e) => handleSubmit(e)}
       >
-        <InputField 
+        <TextField 
           label="Name"
           name="name"
           type="text"
@@ -65,7 +65,7 @@ export default function NewRecipe() {
           required
         />
 
-        <InputField
+        <TextField
           label="Servings"
           name="servings"
           type="number"
