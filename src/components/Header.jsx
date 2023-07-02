@@ -97,7 +97,7 @@ function MobileNavigation() {
 
 export default function Header() {
   return (
-    <header className="py-6 border-b border-gray-400">
+    <header className="py-6 border-b border-slate-100">
       <Container>
         <nav className="relative z-50 flex justify-between">
           <div className="flex items-center md:gap-x-12">
