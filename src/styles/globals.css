@@ -15,3 +15,15 @@
     --background-end-rgb: 0, 0, 0;
   }
 }
+
+
+/* sticky footer */
+/* body handles anything in the app directory */
+/* #__next handles the pages directory */
+body, #__next {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+footer { margin-top: auto; }
