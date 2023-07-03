@@ -13,28 +13,22 @@ import screenshotVatReturns from '@/assets/screenshots/vat-returns.png'
 
 const features = [
   {
-    title: 'Payroll',
+    title: 'Recipes',
     description:
-      "Keep track of everyone's salaries and whether or not they've been paid. Direct deposit not supported.",
+      "Keep track of all your recipes in one place. Add your own or import them from your favorite websites.",
     image: screenshotPayroll,
   },
   {
-    title: 'Claim expenses',
+    title: 'Meal planning',
     description:
-      "All of your receipts organized into one place, as long as you don't mind typing in the data by hand.",
+      "Save mental energy by planning your meals in advance. You can even add your own recipes to the plan.",
     image: screenshotExpenses,
   },
   {
-    title: 'VAT handling',
+    title: 'Shopping lists',
     description:
-      "We only sell our software to companies who don't deal with VAT at all, so technically we do all the VAT stuff they need.",
+      "Generate a grocery list from your meal plan. You can even add your own items to the list.",
     image: screenshotVatReturns,
-  },
-  {
-    title: 'Reporting',
-    description:
-      'Easily export your data into an Excel spreadsheet where you can do whatever the hell you want with it.',
-    image: screenshotReporting,
   },
 ]
 
