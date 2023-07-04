@@ -9,13 +9,12 @@ import screenshotContacts from '@/assets/screenshots/contacts.png'
 import screenshotInventory from '@/assets/screenshots/inventory.png'
 import screenshotProfitLoss from '@/assets/screenshots/profit-loss.png'
 
-/* todo: update content/copy */
 const features = [
   {
-    name: 'Reporting',
-    summary: 'Stay on top of things with always up-to-date reporting features.',
+    name: 'Save money',
+    summary: 'Stop buying too many groceries. Get just what you need.',
     description:
-      'We talked about reporting in the section above but we needed three items here, so mentioning it one more time for posterity.',
+      'When you don\'t have a clear plan in mind, it\'s easy to buy too much food. Peppercorn makes it easy to buy just what you need.',
     image: screenshotProfitLoss,
     icon: function ReportingIcon() {
       let id = useId()
@@ -46,11 +45,11 @@ const features = [
     },
   },
   {
-    name: 'Inventory',
+    name: 'Save time',
     summary:
-      'Never lose track of what’s in stock with accurate inventory tracking.',
+      'Stop wasting time trying to figure out what to cook every day.',
     description:
-      'We don’t offer this as part of our software but that statement is inarguably true. Accurate inventory tracking would help you for sure.',
+      'How much mental energy goes into figuring out what to cook for yourself or your family every day? Remove that stress. Let Peppercorn help.',
     image: screenshotInventory,
     icon: function InventoryIcon() {
       return (
@@ -74,11 +73,11 @@ const features = [
     },
   },
   {
-    name: 'Contacts',
+    name: 'Lose weight',
     summary:
-      'Organize all of your contacts, service providers, and invoices in one place.',
+      'When you eat out less, you will weigh less.',
     description:
-      'This also isn’t actually a feature, it’s just some friendly advice. We definitely recommend that you do this, you’ll feel really organized and professional.',
+      'Remove the temptation to eat out by planning your meals. You\'ll be surprised how much weight you lose when you cook at home more.',
     image: screenshotContacts,
     icon: function ContactsIcon() {
       return (
@@ -218,11 +217,10 @@ export default function SecondaryFeatures() {
       <Container>
         <div className="mx-auto max-w-2xl md:text-center">
           <h2 className="font-display text-3xl tracking-tight text-slate-900 sm:text-4xl">
-            Simplify everyday business tasks.
+            Food simplified.
           </h2>
           <p className="mt-4 text-lg tracking-tight text-slate-700">
-            Because you’d probably be a little confused if we suggested you
-            complicate your everyday business tasks instead.
+            Take the guesswork out of cooking. Eat healthier. Reduce stress.
           </p>
         </div>
         <FeaturesMobile />
