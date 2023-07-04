@@ -69,13 +69,10 @@ export default function PrimaryFeatures() {
           <h2 className="font-display text-3xl tracking-tight text-white sm:text-4xl md:text-5xl">
             Everything you need to plan your meals.
           </h2>
-          {/* todo: update copy */}
-          {/* <p className="mt-6 text-lg tracking-tight text-blue-100">
-            Well everything you need if you aren’t that picky about minor
-            details like tax compliance.
-          </p> */}
+          <p className="mt-6 text-lg tracking-tight text-blue-100">
+            All your recipes, meal plans, and shopping lists in one place.
+          </p>
         </div>
-        {/* todo: content */}
         <Tab.Group
           as="div"
           className="mt-16 grid grid-cols-1 items-center gap-y-2 pt-10 sm:gap-y-6 md:mt-20 lg:grid-cols-12 lg:pt-0"
