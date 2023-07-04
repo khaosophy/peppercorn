@@ -1,8 +1,4 @@
 "use client"
-/**
- * TODO:
- * * get "CTA Button" rounded prop working
- */
 import { Fragment } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import clsx from 'clsx'
@@ -114,7 +110,7 @@ export default function Header() {
             <div className="hidden md:block">
               <NavLink href={routes.login}>Sign in</NavLink>
             </div>
-            <Button href={routes.register} color="blue" shape="round">
+            <Button href={routes.register} color="blue" shape="rounded">
               <span>
                 Get started <span className="hidden lg:inline">today</span>
               </span>
