@@ -1,22 +1,29 @@
-'use client';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import Head from 'next/head';
+
 import routes from '../routes.config';
 import supabase from '../lib/supabase';
-import TextField from '../components/TextField';
-import Button from '../components/Button';
-import Link from '../components/Link';
+
+import Link from '@/components/Link';
+import AuthLayout from '@/components/AuthLayout';
+import Button from '@/components/Button';
+import TextField from '@/components/TextField';
+import Logo from '@/components/Logo';
 
 export default function Register() {
   const router = useRouter();
   const [ email, setEmail ] = useState('');
   const [ password, setPassword ] = useState(''); // TODO: password should be at least six characters long
+  const [ firstName, setFirstName ] = useState('');
+  const [ lastName, setLastName ] = useState('');
 
   const handleRegistration = async (e) => {
     e.preventDefault();
     console.log('registering...');
 
     const { data, error } = await supabase.auth.signUp({ email, password });
+    /* TODO: save first and last name to database */
 
     if (error) {
       /* TODO: display error */
@@ -27,43 +34,93 @@ export default function Register() {
     router.push(routes.home);
   }
 
+  /* TODO: fonts not working, SHOULD display Inter and Lexend, but instead displays system font */
   return (
-    <main className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
-      <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-        Register for a new account
-      </h2>
-
-      <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form className="space-y-6" onSubmit={handleRegistration}>
+    <>
+      <Head>
+        <title>Sign Up | TaxPal</title>
+      </Head>
+      <AuthLayout>
+        <div className="flex flex-col">
+          <Link href="/" aria-label="Home">
+            <Logo className="h-10 w-auto" width={110} height={40} />
+          </Link>
+          <div className="mt-20">
+            <h2 className="text-lg font-semibold text-gray-900">
+              Get started for free
+            </h2>
+            <p className="mt-2 text-sm text-gray-700">
+              Already registered?{' '}
+              <Link
+                href="/login"
+                className="font-medium text-blue-600 hover:underline"
+              >
+                Sign in
+              </Link>{' '}
+              to your account.
+            </p>
+          </div>
+        </div>
+        <form
+          className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-2"
+          onSubmit={handleRegistration}
+        >
           <TextField
-            id="register-email"
+            label="First name"
+            id="first_name"
+            name="first_name"
+            type="text"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+            autoComplete="given-name"
+            required
+          />
+          <TextField
+            label="Last name"
+            id="last_name"
+            name="last_name"
+            type="text"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+            autoComplete="family-name"
+            required
+          />
+          <TextField
+            className="col-span-full"
+            label="Email address"
+            id="email"
+            name="email"
             type="email"
-            label="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            autoComplete="email"
             required
           />
           <TextField
-            id="register-password"
-            type="password"
+            className="col-span-full"
             label="Password"
+            id="password"
+            name="password"
+            type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            autoComplete="new-password"
             required
           />
-          <Button className="flex w-full justify-center">
-            Register
-          </Button>
+          <div className="col-span-full">
+            <Button
+              type="submit"
+              variant="solid"
+              color="blue"
+              className="w-full"
+            >
+              <span>
+                Sign up <span aria-hidden="true">&rarr;</span>
+              </span>
+            </Button>
+          </div>
         </form>
-        
-        <p className="mt-6 text-center text-sm text-gray-500">
-          Already have an account?{' '}
-          <Link href={routes.login}>
-            Log in now.
-          </Link>
-        </p>
-      </div>
-    </main>
+      </AuthLayout>
+    </>
   )
 }
-
