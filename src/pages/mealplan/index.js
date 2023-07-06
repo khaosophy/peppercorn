@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
 import supabase from '../../lib/supabase';
+import routes from '../../routes.config';
+import Layout from '../../components/Layout';
 
 export default function MealPlan() {
   /**
@@ -43,18 +45,20 @@ export default function MealPlan() {
   }, []);
 
   return (
-    <main className={clsx(
-      'flex flex-row-reverse justify-center',
-    )}>
-      <div className="flex-1 p-4">
-        <h2 className="mt-10 text-2xl font-bold leading-9 tracking-tight text-gray-900">Meal Plan</h2>  
-      </div>
+    <Layout>
+      <main className={clsx(
+        'flex flex-row-reverse justify-center',
+      )}>
+        <div className="flex-1 p-4">
+          <h2 className="mt-10 text-2xl font-bold leading-9 tracking-tight text-gray-900">Meal Plan</h2>  
+        </div>
 
-      <div className="bg-indigo-400 p-4">
-        <h3 className="mt-10 text-xl font-bold leading-9 tracking-tight text-gray-900">Recipes</h3>
-        <RecipeList recipes={recipes} />
-      </div>
-    </main>
+        <div className="bg-indigo-400 p-4">
+          <h3 className="mt-10 text-xl font-bold leading-9 tracking-tight text-gray-900">Recipes</h3>
+          <RecipeList recipes={recipes} />
+        </div>
+      </main>
+    </Layout>
   );
 } 
 

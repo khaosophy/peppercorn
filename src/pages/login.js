@@ -1,10 +1,15 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import routes from '../routes.config';
-import supabase from '../lib/supabase';
-import TextField from '../components/TextField';
-import Button from '../components/Button';
-import Link from '../components/Link';
+import Head from 'next/head';
+
+import routes from '@/routes.config';
+import supabase from '@/lib/supabase';
+
+import Link from '@/components/Link';
+import AuthLayout from '@/components/AuthLayout'
+import Button from '@/components/Button'
+import TextField from '@/components/TextField'
+import Logo from '@/components/Logo'
 
 export default function Login() {
   const router = useRouter();
@@ -26,40 +31,68 @@ export default function Login() {
     router.push(routes.recipes);
   }
 
+  /* TODO: fonts not working, SHOULD display Inter and Lexend, but instead displaying system font */
   return (
-    <main className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
-      <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-        Log in to your account
-      </h2>
-
-      <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">      
-        <form className="space-y-6" onSubmit={handleLogin}>
+    <>
+      <Head>
+        <title>Sign In | Peppercorn</title>
+      </Head>
+      <AuthLayout>
+        <div className="flex flex-col">
+          <Link href="/" aria-label="Home">
+            <Logo className="h-10 w-auto" width={110} height={40} />
+          </Link>
+          <div className="mt-20">
+            <h2 className="text-lg font-semibold text-gray-900">
+              Sign in to your account
+            </h2>
+            <p className="mt-2 text-sm text-gray-700">
+              Don’t have an account?{' '}
+              <Link
+                href="/register"
+                className="font-medium text-blue-600 hover:underline"
+              >
+                Sign up
+              </Link>{' '}
+              for a free trial.
+            </p>
+          </div>
+        </div>
+        <form className="mt-10 grid grid-cols-1 gap-y-8" onSubmit={handleLogin}>
           <TextField
+            label="Email address"
+            id="email"
+            name="email"
             type="email"
-            label="Email"
+            autoComplete="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
           <TextField
-            type="password"
             label="Password"
+            id="password"
+            name="password"
+            type="password"
+            autoComplete="current-password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <Button className="flex w-full justify-center">
-            Login
-          </Button>
+          <div>
+            <Button
+              type="submit"
+              variant="solid"
+              color="blue"
+              className="w-full"
+            >
+              <span>
+                Sign in <span aria-hidden="true">&rarr;</span>
+              </span>
+            </Button>
+          </div>
         </form>
-
-        <p className="mt-6 text-center text-sm text-gray-500">
-          Need an account?{' '}
-          <Link href={routes.register}>
-            Sign up now.
-          </Link>
-        </p>
-      </div>
-    </main>
+      </AuthLayout>
+    </>
   )
 }

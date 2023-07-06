@@ -20,9 +20,16 @@
 /* sticky footer */
 /* body handles anything in the app directory */
 /* #__next handles the pages directory */
+html, body {
+  height: 100%;
+}
+
 body, #__next {
   display: flex;
   flex-direction: column;
+}
+
+#__next {
   min-height: 100vh;
 }
 

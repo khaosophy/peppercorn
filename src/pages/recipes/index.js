@@ -5,6 +5,7 @@ import supabase from '../../lib/supabase';
 import Link from '../../components/Link';
 import ActionMenu from '../../components/ActionMenu';
 import routes from '../../routes.config';
+import Layout from '../../components/Layout';
 
 export default function Recipes() {
   const router = useRouter();
@@ -30,17 +31,19 @@ export default function Recipes() {
   }, []);
 
   return (
-    <main className={clsx(
-      'max-w-6xl mx-auto',
-      'flex flex-1 flex-col justify-center',
-      'min-h-full py-4 px-2',
-    )}>
-      <h2 className="mt-10 text-2xl font-bold leading-9 tracking-tight text-gray-900">
-        Recipes
-      </h2>
-      {recipes.length > 0 ? (<RecipeList recipes={recipes} setRecipes={setRecipes} />) : <p>No recipes found.</p>}
-      <Link href="/recipes/new">Add a new recipe</Link>
-    </main>
+    <Layout>
+      <main className={clsx(
+        'max-w-6xl mx-auto',
+        'flex flex-1 flex-col justify-center',
+        'min-h-full py-4 px-2',
+      )}>
+        <h2 className="mt-10 text-2xl font-bold leading-9 tracking-tight text-gray-900">
+          Recipes
+        </h2>
+        {recipes.length > 0 ? (<RecipeList recipes={recipes} setRecipes={setRecipes} />) : <p>No recipes found.</p>}
+        <Link href="/recipes/new">Add a new recipe</Link>
+      </main>
+    </Layout>
   )
 }
 
