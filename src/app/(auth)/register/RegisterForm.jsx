@@ -20,15 +20,28 @@ export default function RegisterForm() {
     e.preventDefault();
     console.log('registering...');
 
-    const { data, error } = await supabase.auth.signUp({ email, password });
-    /* TODO: save first and last name to database */
+    const { data: registerData, error: registerError } = await supabase.auth.signUp({ email, password });
 
-    if (error) {
+    if (registerError) {
       /* TODO: display error */
-      return console.error(error);
+      return console.error(registerError);
     }
 
-    console.log(data);
+    const { error: userError } = await supabase
+      .from('users')
+      .insert({
+        id: registerData.user.id,
+        email,
+        first_name: firstName,
+        last_name: lastName,
+        created_at: registerData.user.created_at,
+      });
+
+    if (userError) {
+      return console.error(userError);
+    }
+
+    console.log(registerData);
     router.push(routes.home);
   }
 
