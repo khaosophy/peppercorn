@@ -1,7 +1,7 @@
 
 import Link from '@/components/Link';
 import Logo from '@/components/Logo';
-import LoginForm from './loginForm';
+import LoginForm from './LoginForm';
 
 export const metadata = {
   title: 'Sign In | Peppercorn',
