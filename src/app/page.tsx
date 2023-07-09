@@ -10,7 +10,6 @@ export default function Home() {
     <Header />
     <main>
       <Hero />
-      {/* todo: update images */}
       <PrimaryFeatures />
       <SecondaryFeatures />
       <CallToAction />

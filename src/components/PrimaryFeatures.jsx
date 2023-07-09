@@ -6,29 +6,30 @@ import clsx from 'clsx'
 
 import Container from '@/components/Container'
 import backgroundImage from '@/assets/images/background-features.jpg'
-import screenshotExpenses from '@/assets/screenshots/expenses.png'
-import screenshotPayroll from '@/assets/screenshots/payroll.png'
-import screenshotReporting from '@/assets/screenshots/reporting.png'
-import screenshotVatReturns from '@/assets/screenshots/vat-returns.png'
+import featureRecipes from '@/assets/images/feature--recipes.jpg'
+/* todo: crop Meal Plan image -- it is too tall */
+import featureMealPlan from '@/assets/images/feature--mealplan.jpg'
+import featureShoppingList from '@/assets/images/feature--shopping_list.jpg'
+
 
 const features = [
   {
     title: 'Recipes',
     description:
       "Keep track of all your recipes in one place. Add your own or import them from your favorite websites.",
-    image: screenshotPayroll,
+    image: featureRecipes,
   },
   {
     title: 'Meal planning',
     description:
       "Save mental energy by planning your meals in advance. You can even add your own recipes to the plan.",
-    image: screenshotExpenses,
+    image: featureMealPlan,
   },
   {
     title: 'Shopping lists',
     description:
       "Generate a grocery list from your meal plan. You can even add your own items to the list.",
-    image: screenshotVatReturns,
+    image: featureShoppingList,
   },
 ]
 
