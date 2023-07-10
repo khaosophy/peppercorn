@@ -1,8 +1,16 @@
 import '../styles/globals.css'
-import { Inter } from 'next/font/google'
-import Header from '../components/header';
+import { Inter, Lexend } from 'next/font/google'
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ 
+  subsets: ['latin'],
+  variable: '--font-inter',
+})
+const lexend = Lexend({
+  subsets: ['latin'],
+  weight: ['400', '500'],
+  variable: '--font-lexend',
+  display: 'swap',
+})
 
 export const metadata = {
   title: 'Create Next App',
@@ -16,8 +24,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <Header />
+      <body className={`${inter.className} ${lexend.variable}`}>
         {children}
       </body>
     </html>

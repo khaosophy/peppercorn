@@ -1,21 +1,19 @@
-import classNames from 'classnames';
-import Link from 'next/link';
-import routes from '../routes.config';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import Hero from '@/components/Hero';
+import PrimaryFeatures from '@/components/PrimaryFeatures';
+import SecondaryFeatures from '@/components/SecondaryFeatures';
+import CallToAction from '@/components/CallToAction';
 
 export default function Home() {
-  return (
-    <main className={classNames(
-      'max-w-6xl mx-auto',
-      'flex flex-1 flex-col justify-center',
-      'min-h-full py-4 px-2',
-    )}>
-      <h3>Whatcha wanna do?</h3>
-      <ul>
-        <li>Already have an account? <Link href={routes.login}>Log in.</Link></li>
-        <li>Want to get started? <Link href={routes.register}>Register now.</Link></li>
-        <li>Ready to add a recipe? <Link href={routes.newRecipe}>Get started.</Link></li>
-        <li>Looking for your recipes? <Link href={routes.recipes}>Check them out.</Link></li>
-      </ul>
+  return (<>
+    <Header />
+    <main>
+      <Hero />
+      <PrimaryFeatures />
+      <SecondaryFeatures />
+      <CallToAction />
     </main>
-  )
+    <Footer />
+  </>)
 }
