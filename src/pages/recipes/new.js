@@ -2,11 +2,11 @@
 import { useState, useEffect } from 'react';
 import router from 'next/router';
 import clsx from 'clsx';
-import routes from '../../routes.config';
-import supabase from '../../lib/supabase';
-import TextField from '../../components/TextField';
-import Button from '../../components/Button';
-import Layout from '../../components/Layout';
+import routes from '@/routes.config';
+import supabase from '@/lib/supabase';
+import TextField from '@/components/TextField';
+import Button from '@/components/Button';
+import Layout from '@/components/Layout';
 
 export default function NewRecipe() {
   const [formData, setFormData] = useState({
