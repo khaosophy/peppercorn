@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
-import supabase from '../../lib/supabase';
-import routes from '../../routes.config';
-import Layout from '../../components/Layout';
+import supabase from '@/lib/supabase';
+import routes from '@/routes.config';
+import Layout from '@/components/Layout';
 
 export default function MealPlan() {
   /**

@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import clsx from 'clsx';
-import supabase from '../../lib/supabase';
-import Link from '../../components/Link';
-import ActionMenu from '../../components/ActionMenu';
-import routes from '../../routes.config';
-import Layout from '../../components/Layout';
+import supabase from '@/lib/supabase';
+import Link from '@/components/Link';
+import ActionMenu from '@/components/ActionMenu';
+import routes from '@/routes.config';
+import Layout from '@/components/Layout';
 
 export default function Recipes() {
   const router = useRouter();
