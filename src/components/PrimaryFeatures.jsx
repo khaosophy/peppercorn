@@ -7,9 +7,8 @@ import clsx from 'clsx'
 import Container from '@/components/Container'
 import backgroundImage from '@/assets/images/background-features.jpg'
 import featureRecipes from '@/assets/images/feature--recipes.jpg'
-/* todo: crop Meal Plan image -- it is too tall */
-import featureMealPlan from '@/assets/images/feature--mealplan.jpg'
-import featureShoppingList from '@/assets/images/feature--shopping_list.jpg'
+import featureMealPlan from '@/assets/images/feature--mealplan-cropped.jpg'
+import featureShoppingList from '@/assets/images/feature--shopping_list-cropped.jpg'
 
 
 const features = [
