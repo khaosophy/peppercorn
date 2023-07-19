@@ -21,13 +21,13 @@ export default function CallToAction() {
       <Container className="relative">
         <div className="mx-auto max-w-lg text-center">
           <h2 className="font-display text-3xl tracking-tight text-white sm:text-4xl">
-            Get started today
+            Be the First
           </h2>
           <p className="mt-4 text-lg tracking-tight text-white">
-            It&apos;s time to take control of your meals. Sign up today and take some stress out of meal time.
+            Take control of your meals. Sign up to get notified when the beta is available.
           </p>
-          <Button href="/register" color="white" className="mt-10">
-            Get started for free
+          <Button href="#" size="lg" shape="rounded" color="white" className="mt-10">
+            Sign Up Now
           </Button>
         </div>
       </Container>
