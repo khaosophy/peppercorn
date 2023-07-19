@@ -43,7 +43,7 @@ function Feature({ feature, className, ...props }) {
         className={clsx('rounded-lg')}
       >
         <Image
-          // className="absolute left-1/2 top-1/2 max-w-none translate-x-[-44%] translate-y-[-42%]"
+          className="rounded-md bg-slate-50 shadow-md"
           src={feature.image}
           alt=""
           width={640}
