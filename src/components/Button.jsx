@@ -4,14 +4,21 @@ import clsx from 'clsx';
 
 const baseStyles = {
   solid:
-    'group inline-flex items-center justify-center py-2 px-4 text-sm font-semibold focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2',
+    'group inline-flex items-center justify-center font-semibold focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2',
   outline:
-    'group inline-flex ring-1 items-center justify-center py-2 px-4 text-sm focus:outline-none',
+    'group inline-flex ring-1 items-center justify-center focus:outline-none',
 }
 
 const shapeStyles = {
   rounded: 'rounded-full',
   square: 'rounded-md',
+}
+
+const sizeStyles = {
+  sm: 'text-sm py-2 px-4',
+  md: 'text-base py-3 px-6',
+  lg: 'text-lg py-4 px-8',
+  xl: 'text-xl py-5 px-10',
 }
 
 const variantStyles = {
@@ -35,6 +42,7 @@ const Button = forwardRef(function Button(props, ref) {
     variant = 'solid',
     color = 'slate',
     shape = 'square',
+    size = 'sm',
     className,
     href,
   } = props;
@@ -43,6 +51,7 @@ const Button = forwardRef(function Button(props, ref) {
     baseStyles[variant],
     variantStyles[variant][color],
     shapeStyles[shape],
+    sizeStyles[size],
     className
   )
 
