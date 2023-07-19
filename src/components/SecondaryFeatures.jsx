@@ -86,7 +86,7 @@ export default function SecondaryFeatures() {
         <div className="mt-20 flex flex-col lg:flex-row gap-20 px-4 sm:px-6">
           {features.map((feature) => (
             <div key={feature.name}>
-              <Feature feature={feature} className="mx-auto max-w-2xl" isActive />
+              <Feature feature={feature} className="mx-auto max-w-2xl" />
             </div>
           ))}
         </div>

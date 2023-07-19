@@ -5,6 +5,7 @@ import RegisterForm from './RegisterForm';
 
 export const metadata = {
   title: 'Sign Up | Peppercorn',
+  description: 'Sign up for a free Peppercorn account and start planning your weekly meals today.',
 };
 
 export default function Register() {
