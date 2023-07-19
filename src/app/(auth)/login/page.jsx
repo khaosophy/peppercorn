@@ -5,6 +5,7 @@ import LoginForm from './LoginForm';
 
 export const metadata = {
   title: 'Sign In | Peppercorn',
+  description: 'Sign in to your Peppercorn account and start planning your weekly meals today.',
 };
 
 export default function Login() {
