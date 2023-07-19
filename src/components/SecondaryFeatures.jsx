@@ -4,7 +4,7 @@ import clsx from 'clsx';
 
 import Container from '@/components/Container'
 import featureLoseWeight from '@/assets/images/feature--weight.jpg'
-import featureSaveTime from '@/assets/images/feature--relax.jpg'
+import featureSaveTime from '@/assets/images/feature--relax-cropped.jpg'
 import featureSaveMoney from '@/assets/images/feature--money.jpg'
 
 const features = [
@@ -46,8 +46,8 @@ function Feature({ feature, className, ...props }) {
           // className="absolute left-1/2 top-1/2 max-w-none translate-x-[-44%] translate-y-[-42%]"
           src={feature.image}
           alt=""
-          width={2245}
-          height={1636}
+          width={640}
+          height={427}
           unoptimized
         />
       </div>
