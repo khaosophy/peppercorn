@@ -100,25 +100,10 @@ export default function Header() {
             <Link href={routes.home} aria-label="Home">
               <Logo className="h-10 w-auto" width={200} height={74} />
             </Link>
-            <div className="hidden md:flex md:gap-x-6">
-              <NavLink href={routes.home}>Home</NavLink>
-              <NavLink href={routes.recipes}>Recipes</NavLink>
-              <NavLink href={routes.mealplans}>Meal Plan</NavLink>
-            </div>
           </div>
-          <div className="flex items-center gap-x-5 md:gap-x-8">
-            <div className="hidden md:block">
-              <NavLink href={routes.login}>Sign in</NavLink>
-            </div>
-            <Button href={routes.register} color="blue" shape="rounded">
-              <span>
-                Get started <span className="hidden lg:inline">today</span>
-              </span>
-            </Button>
-            <div className="-mr-1 md:hidden">
-              <MobileNavigation />
-            </div>
-          </div>
+          <Button href="#" color="blue" shape="rounded">
+            Join the waiting list
+          </Button>
         </nav>
       </Container>
     </header>
