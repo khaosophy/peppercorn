@@ -1,5 +1,3 @@
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import Hero from '@/components/Hero';
 import PrimaryFeatures from '@/components/PrimaryFeatures';
 import SecondaryFeatures from '@/components/SecondaryFeatures';
@@ -12,13 +10,11 @@ export const metadata = {
 
 export default function Home() {
   return (<>
-    {/* <Header /> */}
     <main>
       <Hero />
       <PrimaryFeatures />
       <SecondaryFeatures />
       <CallToAction />
     </main>
-    {/* <Footer /> */}
   </>)
 }
