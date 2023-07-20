@@ -26,7 +26,7 @@ export default function Hero() {
         Save time. Save money. Eat healthy.
       </p>
       <div className="mt-10 flex justify-center gap-x-6">
-        <Button href="#" size="lg" color="blue" shape="rounded">Join the waiting list</Button>
+        <Button href="/subscribe" size="lg" color="blue" shape="rounded">Join the waiting list</Button>
       </div>
     </Container>
   )

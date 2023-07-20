@@ -26,7 +26,7 @@ export default function CallToAction() {
           <p className="mt-4 text-lg tracking-tight text-white">
             Take control of your meals. Sign up to get notified when the beta is available.
           </p>
-          <Button href="#" size="lg" shape="rounded" color="white" className="mt-10">
+          <Button href="/subscribe" size="lg" shape="rounded" color="white" className="mt-10">
             Sign Up Now
           </Button>
         </div>
