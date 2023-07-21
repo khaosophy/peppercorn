@@ -24,11 +24,11 @@ const features = [
     image: featureSaveTime,
   },
   {
-    name: 'Lose weight',
+    name: 'Eat healthy',
     summary:
-      'When you eat out less, you will weigh less.',
+      'Your body will thank you when you eat out less.',
     description:
-      'Remove the temptation to eat out by planning your meals. You\'ll be surprised how much weight you lose when you cook at home more.',
+      'Remove the temptation to eat out by planning your meals in advance. You\'ll be surprised how much healthier you\'ll be when you cook at home.',
     image: featureLoseWeight,
   },
 ]
