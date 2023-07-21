@@ -21,13 +21,13 @@ const features = [
   {
     title: 'Meal planning',
     description:
-      "Save mental energy by planning your meals in advance. You can even add your own recipes to the plan.",
+      "Save mental energy. Open your recipebook and easily plan out your meals in advance.",
     image: featureMealPlan,
   },
   {
     title: 'Shopping lists',
     description:
-      "Generate a grocery list from your meal plan. You can even add your own items to the list.",
+      "Quickly generate a grocery list from your meal plan, with the option to add additional items.",
     image: featureShoppingList,
   },
 ]
