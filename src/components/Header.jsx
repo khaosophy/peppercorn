@@ -1,22 +1,15 @@
 "use client"
-import { Fragment } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import clsx from 'clsx'
 
+import supabase from '@/lib/supabase';
 import Link from './Link'
 import Button from './Button'
 import Container from './Container'
 import Logo from './Logo'
 import NavLink from './NavLink'
 import routes from '@/routes.config'
-
-function MobileNavLink({ href, children }) {
-  return (
-    <Popover.Button as={Link} href={href} className="block w-full p-2">
-      {children}
-    </Popover.Button>
-  )
-}
 
 function MobileNavIcon({ open }) {
   return (
@@ -77,13 +70,9 @@ function MobileNavigation() {
         >
           <Popover.Panel
             as="div"
-            className="absolute inset-x-0 top-full mt-4 flex origin-top flex-col rounded-2xl bg-white p-4 text-lg tracking-tight text-slate-900 shadow-xl ring-1 ring-slate-900/5"
+            className="absolute inset-x-0 top-full mt-4 origin-top rounded-2xl bg-white p-4 text-lg tracking-tight text-slate-900 shadow-xl ring-1 ring-slate-900/5"
           >
-            <NavLink href={routes.home}>Home</NavLink>
-            <NavLink href={routes.recipes}>Recipes</NavLink>
-            <NavLink href={routes.mealplans}>Meal Plan</NavLink>
-            <hr className="m-2 border-slate-300/40" />
-            <MobileNavLink href={routes.login}>Sign in</MobileNavLink>
+            <NavList className="flex flex-col text-right gap-y-2"/>
           </Popover.Panel>
         </Transition.Child>
       </Transition.Root>
@@ -91,33 +80,64 @@ function MobileNavigation() {
   )
 }
 
+function NavList({ className }) {
+  return (
+    <ul className={className}>
+      <li>
+        <NavLink href={routes.home}>Home</NavLink>
+      </li>
+      <li>
+        <NavLink href={routes.recipes}>Recipes</NavLink>
+      </li>
+      <li>
+        <NavLink href={routes.mealplans}>Meal Plan</NavLink>
+      </li>
+    </ul>
+  )
+}
+
+function HeaderActions() {
+  return (<>
+    <div className="hidden sm:block">
+      <NavLink href={routes.login}>Sign in</NavLink>
+    </div>
+    <Button href={routes.register} color="blue" shape="rounded">
+      <span>
+        Get started <span className="hidden lg:inline">today</span>
+      </span>
+    </Button>
+  </>)
+}
+
 export default function Header() {
+  const [isLoggedIn, setIsLoggedIn] = useState(null);
+  useEffect(() => {
+    const getSession = async () => {
+      const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+      if (sessionError) console.log(sessionError);
+      if (session) setIsLoggedIn(true);
+      if (!session) setIsLoggedIn(false);
+    }
+    getSession();
+  }, []);
+
   return (
     <header className="py-6 border-b border-slate-100">
       <Container>
         <nav className="relative z-50 flex justify-between">
-          <div className="flex items-center md:gap-x-12">
-            <Link href={routes.home} aria-label="Home">
-              <Logo className="h-10 w-auto" width={200} height={74} />
-            </Link>
-            <div className="hidden md:flex md:gap-x-6">
-              <NavLink href={routes.home}>Home</NavLink>
-              <NavLink href={routes.recipes}>Recipes</NavLink>
-              <NavLink href={routes.mealplans}>Meal Plan</NavLink>
-            </div>
-          </div>
-          <div className="flex items-center gap-x-5 md:gap-x-8">
-            <div className="hidden md:block">
-              <NavLink href={routes.login}>Sign in</NavLink>
-            </div>
-            <Button href={routes.register} color="blue" shape="rounded">
-              <span>
-                Get started <span className="hidden lg:inline">today</span>
-              </span>
-            </Button>
-            <div className="-mr-1 md:hidden">
-              <MobileNavigation />
-            </div>
+          <Link href={routes.home} aria-label="Home">
+            <Logo className="h-10 w-auto" width={200} height={74} />
+          </Link>
+          <div className="flex items-center gap-x-5 sm:gap-x-8">
+            {isLoggedIn && (<>
+              <NavList className="hidden sm:flex sm:gap-x-6" />
+              <div className="-mr-1 sm:hidden">
+                <MobileNavigation />
+              </div>
+            </>)}
+            {isLoggedIn === false && (<>
+              <HeaderActions />
+            </>)}
           </div>
         </nav>
       </Container>
