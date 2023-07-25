@@ -73,9 +73,15 @@ function MobileNavigation() {
             className="absolute inset-x-0 top-full mt-4 origin-top rounded-2xl bg-white p-4 text-lg tracking-tight text-slate-900 shadow-xl ring-1 ring-slate-900/5"
           >
             <ul className="flex flex-col text-right">
-              <NavLink href={routes.home}>Home</NavLink>
-              <NavLink href={routes.recipes}>Recipes</NavLink>
-              <NavLink href={routes.mealplans}>Meal Plan</NavLink>
+              <li>
+                <NavLink href={routes.home}>Home</NavLink>
+              </li>
+              <li>
+                <NavLink href={routes.recipes}>Recipes</NavLink>
+              </li>
+              <li>
+                <NavLink href={routes.mealplans}>Meal Plan</NavLink>
+              </li>
             </ul>
           </Popover.Panel>
         </Transition.Child>
