@@ -7,7 +7,10 @@ export default function TextField(props) {
   return (
     <div className={props.className}>
       <label
-        className="mb-2 block text-sm font-medium text-gray-700"
+        className={clsx(
+          'mb-2 block text-sm font-medium text-gray-700',
+          props.isLabelHidden && 'sr-only',
+        )}
         htmlFor={props.id}
       >
         {props.label}
