@@ -1,16 +1,19 @@
 
 import { useState, useEffect } from 'react';
 import router from 'next/router';
-import clsx from 'clsx';
 import routes from '@/routes.config';
 import supabase from '@/lib/supabase';
+import Container from '@/components/Container';
 import TextField from '@/components/TextField';
+// import TextArea from '@/components/TextArea';
 import Button from '@/components/Button';
 import Layout from '@/components/Layout';
+import Instructions from '@/components/Instructions';
 
 export default function NewRecipe() {
   const [formData, setFormData] = useState({
     name: '',
+    instructions: ['Step 1', 'Step 2', 'Step 3'],
     servings: 0,
   });
   const [userId, setUserId] = useState(null);
@@ -48,35 +51,46 @@ export default function NewRecipe() {
 
   return (
     <Layout>
-      <main className={clsx(
-        'max-w-6xl mx-auto',
-        'flex flex-1 flex-col justify-center',
-        'min-h-full py-4 px-2',
-      )}>
-        <h2 className="mt-10 text-2xl font-bold leading-9 tracking-tight text-gray-900">Add a new recipe</h2>
-        <form
-          className="mt-6 max-w-md space-y-6"
-          onSubmit={(e) => handleSubmit(e)}
-        >
-          <TextField 
-            label="Name"
-            name="name"
-            type="text"
-            value={formData.name}
-            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-            required
-          />
+      <main>
+        <Container className="mb-20">
+          <h2 className="mt-10 text-2xl font-bold leading-9 tracking-tight text-gray-900">Add a new recipe</h2>
+          <form
+            className="mt-6 max-w-md space-y-6"
+            onSubmit={(e) => handleSubmit(e)}
+          >
+            <TextField 
+              label="Name"
+              name="name"
+              type="text"
+              value={formData.name}
+              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              required
+            />
 
-          <TextField
-            label="Servings"
-            name="servings"
-            type="number"
-            value={formData.servings}
-            onChange={(e) => setFormData({ ...formData, servings: e.target.value })}
-          />
+            {/* <TextArea
+              label="Ingredients"
+              name="ingredients"
+              value={formData.ingredients}
+              rows={5}
+              onChange={(e) => setFormData({ ...formData, ingredients: e.target.value })}
+            /> */}
 
-          <Button>Save Recipe</Button>
-        </form>
+            <Instructions
+              value={formData.instructions}
+              onChange={(e) => setFormData({ ...formData, instructions: e.target.value })}
+            />
+
+            <TextField
+              label="Servings"
+              name="servings"
+              type="number"
+              value={formData.servings}
+              onChange={(e) => setFormData({ ...formData, servings: e.target.value })}
+            />
+
+            <Button>Save Recipe</Button>
+          </form>
+        </Container>
       </main>
     </Layout>
   )
