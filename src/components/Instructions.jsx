@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { CiCircleMinus as Remove } from 'react-icons/ci';
 import { 
   formReset,
   formDisplay,
@@ -16,7 +17,6 @@ import {
  *  - "tab" while last input is focused
  *  - "enter" while any instruction input is focused (and update focus to new input)
  * remove step
- *  - "delete" icon
  *  - "backspace" on empty input
  */
 
@@ -29,12 +29,19 @@ export default function Instructions(props) {
     onChange({ instructions: newInstructions });
   };
 
+  const removeStep = (key) => {
+    const newInstructions = [...instructions];
+    if (newInstructions.length === 1) return onChange({ instructions: [''] });
+    newInstructions.splice(key, 1);
+    onChange({ instructions: newInstructions });
+  };
+
   return (
     <fieldset>
       <legend className="block text-sm mb-2 font-medium text-gray-700">Instructions</legend>
       <div className="space-y-2">
         {instructions.map((instruction, index) => (
-          <div key={index}>
+          <div key={index} className='relative'>
             <label htmlFor={`instruction-${index}`} className="sr-only">
               Step ${index + 1}
             </label>
@@ -67,6 +74,14 @@ export default function Instructions(props) {
                 onChange={(e) => handleChange(e, index)}
               />
             </div>
+            <button
+              className={clsx(
+                'absolute -right-7 top-1/2 transform -translate-y-1/2',
+              )}
+              onClick={() => removeStep(index)}
+            >
+              <Remove size="1.35rem" />
+            </button>
           </div>
         ))}
       </div>
