@@ -78,6 +78,7 @@ export default function Instructions(props) {
               className={clsx(
                 'absolute -right-7 top-1/2 transform -translate-y-1/2',
               )}
+              /* TODO: Why this this fire when pressing Enter in instruction input? */
               onClick={() => removeStep(index)}
             >
               <Remove size="1.35rem" />
