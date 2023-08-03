@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import { CiCircleMinus as Remove } from 'react-icons/ci';
+import { CgMathPlus as Add } from 'react-icons/cg';
 import { 
   formReset,
   formDisplay,
@@ -13,9 +14,8 @@ import {
 /**
  * TODO:
  * add step
- *  - "add" icon
- *  - "tab" while last input is focused
- *  - "enter" while any instruction input is focused (and update focus to new input)
+ *  - "enter" while any instruction input is focused
+ *  - update focus new new inputs
  * remove step
  *  - "backspace" on empty input
  */
@@ -84,6 +84,12 @@ export default function Instructions(props) {
             </button>
           </div>
         ))}
+        <button
+          className='flex items-center text-sm text-gray-700 px-2'
+          onClick={() => onChange({ instructions: [...instructions, ''] })}
+        >
+          <Add /> Add Step
+        </button>
       </div>
     </fieldset>
   );
