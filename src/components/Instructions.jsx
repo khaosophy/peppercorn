@@ -11,7 +11,6 @@ import {
 
 /**
  * TODO:
- * onChange handler
  * add step
  *  - "add" icon
  *  - "tab" while last input is focused
@@ -22,13 +21,19 @@ import {
  */
 
 export default function Instructions(props) {
-  const { value, onChange } = props;
-  console.log(value);
+  const { value: instructions, onChange } = props;
+  
+  const handleChange = (event, key) => {
+    const newInstructions = [...instructions];
+    newInstructions[key] = event.target.value;
+    onChange({ instructions: newInstructions });
+  };
+
   return (
     <fieldset>
       <legend className="block text-sm mb-2 font-medium text-gray-700">Instructions</legend>
       <div className="space-y-2">
-        {value.map((instruction, index) => (
+        {instructions.map((instruction, index) => (
           <div key={index}>
             <label htmlFor={`instruction-${index}`} className="sr-only">
               Step ${index + 1}
@@ -59,6 +64,7 @@ export default function Instructions(props) {
                   'focus:ring-0',
                 )}
                 value={instruction}
+                onChange={(e) => handleChange(e, index)}
               />
             </div>
           </div>

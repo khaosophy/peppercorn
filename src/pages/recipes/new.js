@@ -77,7 +77,7 @@ export default function NewRecipe() {
 
             <Instructions
               value={formData.instructions}
-              onChange={(e) => setFormData({ ...formData, instructions: e.target.value })}
+              onChange={setFormData}
             />
 
             <TextField
