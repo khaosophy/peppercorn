@@ -21,10 +21,10 @@ import uid from '@/lib/uid';
 export default function Instructions(props) {
   const { value: instructions, onChange } = props;
   
-  const handleChange = (event, key) => {
-    // todo: update to use ID instead of index/key
+  const handleChange = (event, id) => {
     const newInstructions = [...instructions];
-    newInstructions[key] = event.target.value;
+    const key = newInstructions.findIndex((instruction) => instruction.id === id);
+    newInstructions[key].text = event.target.value;
     onChange({ instructions: newInstructions });
   };
 
