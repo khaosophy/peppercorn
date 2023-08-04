@@ -20,6 +20,7 @@ export default function NewRecipe() {
       { id: uid(), text: 'Hello Goodbye', order: 3, isFocused: false },
     ],
     servings: 0,
+    notes: '',
   });
   const [userId, setUserId] = useState(null);
 
