@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import clsx from 'clsx';
 import { CiCircleMinus as Remove } from 'react-icons/ci';
 import { CgMathPlus as Add } from 'react-icons/cg';
@@ -10,7 +11,6 @@ import {
   formText,
   formFocusWithin,
 } from '@/lib/base-form-class';
-import { useEffect } from 'react';
 
 /**
  * TODO:
@@ -37,6 +37,10 @@ export default function Instructions(props) {
     onChange({ instructions: newInstructions });
   };
 
+  const addStep = () => {
+    onChange({ instructions: [...instructions, ''] });
+  };
+
   return (
     <fieldset>
       <legend className="block text-sm mb-2 font-medium text-gray-700">Instructions</legend>
@@ -48,6 +52,7 @@ export default function Instructions(props) {
             value={instruction}
             onChange={handleChange}
             remove={removeStep}
+            add={addStep}
           />
         ))}
         <button
@@ -62,17 +67,30 @@ export default function Instructions(props) {
   );
 }
 
-const Step = ({ index, value, onChange, remove }) => {
+const Step = ({ index, value, onChange, remove, add }) => {
+  const inputRef = useRef(null);
   useEffect(() => {
     /**
-     * TODO:
      * when this component mounts, do the following
      * - attach an event that listens for "enter" keypress, and have it create a new step when pressed
      * - attach an event that listens for "backspace" keypress, and have it remove the step if the input is empty
-     * - focus the input when it mounts
      */
-    
-  }, []);
+    const input = inputRef.current;
+    function handleEvents(e) {
+        if (e.key === 'Enter') {
+          add();
+        }
+        if (e.key === 'Backspace' && e.target.value === '') {
+          remove(index);
+        }
+    }
+
+    input.addEventListener('keydown', handleEvents);
+
+    return () => {
+      input.removeEventListener('keydown', handleEvents);
+    }
+  }, [add, remove, index]);
 
   return (
     <div className='relative'>
@@ -91,6 +109,7 @@ const Step = ({ index, value, onChange, remove }) => {
           {index + 1}
         </span>
         <input
+          ref={inputRef}
           type="text"
           id={`instruction-${index}`}
           className={clsx(
