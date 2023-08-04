@@ -10,6 +10,7 @@ import {
   formText,
   formFocusWithin,
 } from '@/lib/base-form-class';
+import { useEffect } from 'react';
 
 /**
  * TODO:
@@ -41,51 +42,16 @@ export default function Instructions(props) {
       <legend className="block text-sm mb-2 font-medium text-gray-700">Instructions</legend>
       <div className="space-y-2">
         {instructions.map((instruction, index) => (
-          <div key={index} className='relative'>
-            <label htmlFor={`instruction-${index}`} className="sr-only">
-              Step ${index + 1}
-            </label>
-            <div className={clsx(
-              'flex',
-              formBorder,
-              formFocusWithin,
-            )}>
-              <span className={clsx(
-                'inline-flex rounded-l-md border-r',
-                formSpacing,
-              )}>
-                {index + 1}
-              </span>
-              <input
-                type="text"
-                id={`instruction-${index}`}
-                className={clsx(
-                  'flex-1 rounded-none rounded-r-md',
-                  formReset,
-                  formDisplay,
-                  formSpacing,
-                  'border-0',
-                  formBackground,
-                  formText,
-                  'focus:bg-white',
-                  'focus:ring-0',
-                )}
-                value={instruction}
-                onChange={(e) => handleChange(e, index)}
-              />
-            </div>
-            <button
-              className={clsx(
-                'absolute -right-7 top-1/2 transform -translate-y-1/2',
-              )}
-              /* TODO: Why this this fire when pressing Enter in instruction input? */
-              onClick={() => removeStep(index)}
-            >
-              <Remove size="1.35rem" />
-            </button>
-          </div>
+          <Step
+            key={index}
+            index={index}
+            value={instruction}
+            onChange={handleChange}
+            remove={removeStep}
+          />
         ))}
         <button
+          type="button"
           className='flex items-center text-sm text-gray-700 px-2'
           onClick={() => onChange({ instructions: [...instructions, ''] })}
         >
@@ -93,5 +59,64 @@ export default function Instructions(props) {
         </button>
       </div>
     </fieldset>
+  );
+}
+
+const Step = ({ index, value, onChange, remove }) => {
+  useEffect(() => {
+    /**
+     * TODO:
+     * when this component mounts, do the following
+     * - attach an event that listens for "enter" keypress, and have it create a new step when pressed
+     * - attach an event that listens for "backspace" keypress, and have it remove the step if the input is empty
+     * - focus the input when it mounts
+     */
+    
+  }, []);
+
+  return (
+    <div className='relative'>
+      <label htmlFor={`instruction-${index}`} className="sr-only">
+        Step ${index + 1}
+      </label>
+      <div className={clsx(
+        'flex',
+        formBorder,
+        formFocusWithin,
+      )}>
+        <span className={clsx(
+          'inline-flex rounded-l-md border-r',
+          formSpacing,
+        )}>
+          {index + 1}
+        </span>
+        <input
+          type="text"
+          id={`instruction-${index}`}
+          className={clsx(
+            'flex-1 rounded-none rounded-r-md',
+            formReset,
+            formDisplay,
+            formSpacing,
+            'border-0',
+            formBackground,
+            formText,
+            'focus:bg-white',
+            'focus:ring-0',
+          )}
+          value={value}
+          onChange={(e) => onChange(e, index)}
+        />
+      </div>
+      <button
+        type="button"
+        className={clsx(
+          'absolute -right-7 top-1/2 transform -translate-y-1/2',
+        )}
+        onClick={() => remove(index)}
+      >
+        <Remove size="1.35rem" />
+      </button>
+    </div>
   );
 }

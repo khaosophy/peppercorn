@@ -88,7 +88,7 @@ export default function NewRecipe() {
               onChange={(e) => setFormData({ ...formData, servings: e.target.value })}
             />
 
-            <Button>Save Recipe</Button>
+            <Button type="button">Save Recipe</Button>
           </form>
         </Container>
       </main>
