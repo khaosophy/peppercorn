@@ -50,10 +50,18 @@ export default function Instructions(props) {
     onChange({ instructions: newInstructions });
   };
 
-  const removeStep = (key) => {
-    // todo: update to use ID instead of index/key
+  const removeStep = (id) => {
     const newInstructions = [...instructions];
-    if (newInstructions.length === 1) return onChange({ instructions: [''] });
+    
+    if (newInstructions.length === 1) return onChange({ instructions: [{id: uid(), order: 1, text: '', isFocused: true }] });
+    
+    const key = newInstructions.findIndex((instruction) => instruction.id === id);
+    
+    // update the order of the steps after the removed step
+    for (let i = key + 1; i < newInstructions.length; i++) {
+      newInstructions[i].order = newInstructions[i].order - 1;
+    }
+    
     newInstructions.splice(key, 1);
     onChange({ instructions: newInstructions });
   };
@@ -99,7 +107,7 @@ const Step = ({ id, order, value, onChange, add, remove }) => {
           add(id);
         }
         if (e.key === 'Backspace' && e.target.value === '') {
-          remove(index);
+          remove(id);
         }
     }
 
@@ -108,7 +116,7 @@ const Step = ({ id, order, value, onChange, add, remove }) => {
     return () => {
       input.removeEventListener('keydown', handleEvents);
     }
-  }, [remove]);
+  }, [remove, add, id]);
 
   return (
     <div className='relative'>
