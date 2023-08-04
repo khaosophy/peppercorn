@@ -14,15 +14,15 @@ export default function TextField(props) {
         {props.label}
       </label>
       <input
+        {...props}
         className={clsx(
           formClasses,
         )}
-        type={props.type}
+        type={props.type || 'text'}
         id={props.id}
         name={props.name}
         value={props.value}
         onChange={props.onChange}
-        required={props.required}
       />
     </div>
   );
