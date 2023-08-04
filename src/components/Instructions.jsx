@@ -14,11 +14,7 @@ import {
 
 /**
  * TODO:
- * add step
- *  - "enter" while any instruction input is focused
- *  - update focus new new inputs
- * remove step
- *  - "backspace" on empty input
+ *  - improve focus flow
  */
 
 export default function Instructions(props) {
@@ -37,8 +33,10 @@ export default function Instructions(props) {
     onChange({ instructions: newInstructions });
   };
 
-  const addStep = () => {
-    onChange({ instructions: [...instructions, ''] });
+  const addStep = (key) => {
+    const newInstructions = [...instructions];
+    newInstructions.splice(key + 1, 0, '');
+    onChange({ instructions: newInstructions });
   };
 
   return (
@@ -78,7 +76,7 @@ const Step = ({ index, value, onChange, remove, add }) => {
     const input = inputRef.current;
     function handleEvents(e) {
         if (e.key === 'Enter') {
-          add();
+          add(index);
         }
         if (e.key === 'Backspace' && e.target.value === '') {
           remove(index);
