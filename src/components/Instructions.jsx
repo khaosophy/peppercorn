@@ -61,8 +61,8 @@ export default function Instructions(props) {
     for (let i = key + 1; i < newInstructions.length; i++) {
       newInstructions[i].order = newInstructions[i].order - 1;
     }
-    
     newInstructions.splice(key, 1);
+    newInstructions[key - 1].isFocused = true;
     onChange({ instructions: newInstructions });
   };
 
@@ -76,6 +76,7 @@ export default function Instructions(props) {
             id={instruction.id}
             order={instruction.order}
             value={instruction.text}
+            isFocused={instruction.isFocused}
             onChange={handleChange}
             remove={removeStep}
             add={addStep}
@@ -93,7 +94,17 @@ export default function Instructions(props) {
   );
 }
 
-const Step = ({ id, order, value, onChange, add, remove }) => {
+const Step = (props) => {
+  const { 
+    id,
+    order,
+    value,
+    isFocused,
+    onChange,
+    add,
+    remove,
+  } = props;
+
   const inputRef = useRef(null);
   useEffect(() => {
     /**
@@ -117,6 +128,12 @@ const Step = ({ id, order, value, onChange, add, remove }) => {
       input.removeEventListener('keydown', handleEvents);
     }
   }, [remove, add, id]);
+
+  useEffect(() => {
+    if (isFocused) {
+      inputRef.current.focus();
+    }
+  }, [isFocused]);
 
   return (
     <div className='relative'>
