@@ -11,6 +11,7 @@ import {
   formText,
   formFocusWithin,
 } from '@/lib/base-form-class';
+import uid from '@/lib/uid';
 
 /**
  * TODO:
@@ -21,21 +22,39 @@ export default function Instructions(props) {
   const { value: instructions, onChange } = props;
   
   const handleChange = (event, key) => {
+    // todo: update to use ID instead of index/key
     const newInstructions = [...instructions];
     newInstructions[key] = event.target.value;
     onChange({ instructions: newInstructions });
   };
 
-  const removeStep = (key) => {
+  const addStep = (id) => {
     const newInstructions = [...instructions];
-    if (newInstructions.length === 1) return onChange({ instructions: [''] });
-    newInstructions.splice(key, 1);
+    const newId = uid();
+
+    if(!id) {
+      // if no ID is passed, add a new step to the end of the array
+      newInstructions.push({ id: newId, order: newInstructions.length + 1, text: '', isFocused: true });
+      return onChange({ instructions: newInstructions });
+    }
+    
+    const key = newInstructions.findIndex((instruction) => instruction.id === id);
+    
+    // update the order of the steps after the new step
+    for (let i = key + 1; i < newInstructions.length; i++) {
+      newInstructions[i].order = newInstructions[i].order + 1;
+    }
+
+    const newStep = { id: newId, order: key + 2, text: '', isFocused: true };
+    newInstructions.splice(key + 1, 0, newStep);
     onChange({ instructions: newInstructions });
   };
 
-  const addStep = (key) => {
+  const removeStep = (key) => {
+    // todo: update to use ID instead of index/key
     const newInstructions = [...instructions];
-    newInstructions.splice(key + 1, 0, '');
+    if (newInstructions.length === 1) return onChange({ instructions: [''] });
+    newInstructions.splice(key, 1);
     onChange({ instructions: newInstructions });
   };
 
@@ -43,11 +62,12 @@ export default function Instructions(props) {
     <fieldset>
       <legend className="block text-sm mb-2 font-medium text-gray-700">Instructions</legend>
       <div className="space-y-2">
-        {instructions.map((instruction, index) => (
+        {instructions.map((instruction) => (
           <Step
-            key={index}
-            index={index}
-            value={instruction}
+            key={instruction.id}
+            id={instruction.id}
+            order={instruction.order}
+            value={instruction.text}
             onChange={handleChange}
             remove={removeStep}
             add={addStep}
@@ -56,7 +76,7 @@ export default function Instructions(props) {
         <button
           type="button"
           className='flex items-center text-sm text-gray-700 px-2'
-          onClick={() => onChange({ instructions: [...instructions, ''] })}
+          onClick={() => addStep()}
         >
           <Add /> Add Step
         </button>
@@ -65,7 +85,7 @@ export default function Instructions(props) {
   );
 }
 
-const Step = ({ index, value, onChange, remove, add }) => {
+const Step = ({ id, order, value, onChange, add, remove }) => {
   const inputRef = useRef(null);
   useEffect(() => {
     /**
@@ -76,7 +96,7 @@ const Step = ({ index, value, onChange, remove, add }) => {
     const input = inputRef.current;
     function handleEvents(e) {
         if (e.key === 'Enter') {
-          add(index);
+          add(id);
         }
         if (e.key === 'Backspace' && e.target.value === '') {
           remove(index);
@@ -88,12 +108,12 @@ const Step = ({ index, value, onChange, remove, add }) => {
     return () => {
       input.removeEventListener('keydown', handleEvents);
     }
-  }, [add, remove, index]);
+  }, [remove]);
 
   return (
     <div className='relative'>
-      <label htmlFor={`instruction-${index}`} className="sr-only">
-        Step ${index + 1}
+      <label htmlFor={`instruction-${id}`} className="sr-only">
+        Step ${order}
       </label>
       <div className={clsx(
         'flex',
@@ -104,12 +124,12 @@ const Step = ({ index, value, onChange, remove, add }) => {
           'inline-flex rounded-l-md border-r',
           formSpacing,
         )}>
-          {index + 1}
+          {order}
         </span>
         <input
           ref={inputRef}
           type="text"
-          id={`instruction-${index}`}
+          id={`instruction-${id}`}
           className={clsx(
             'flex-1 rounded-none rounded-r-md',
             formReset,
@@ -122,7 +142,7 @@ const Step = ({ index, value, onChange, remove, add }) => {
             'focus:ring-0',
           )}
           value={value}
-          onChange={(e) => onChange(e, index)}
+          onChange={(e) => onChange(e, id)}
         />
       </div>
       <button
@@ -130,7 +150,7 @@ const Step = ({ index, value, onChange, remove, add }) => {
         className={clsx(
           'absolute -right-7 top-1/2 transform -translate-y-1/2',
         )}
-        onClick={() => remove(index)}
+        onClick={() => remove(id)}
       >
         <Remove size="1.35rem" />
       </button>

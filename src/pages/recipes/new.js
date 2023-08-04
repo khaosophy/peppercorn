@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import router from 'next/router';
 import routes from '@/routes.config';
 import supabase from '@/lib/supabase';
+import uid from '@/lib/uid';
 import Container from '@/components/Container';
 import TextField from '@/components/TextField';
 // import TextArea from '@/components/TextArea';
@@ -13,7 +14,11 @@ import Instructions from '@/components/Instructions';
 export default function NewRecipe() {
   const [formData, setFormData] = useState({
     name: '',
-    instructions: ['Step 1', 'Step 2', 'Step 3'],
+    instructions: [
+      { id: uid(), text: 'Hello', order: 1, isFocused: false },
+      { id: uid(), text: 'Goodbye', order: 2, isFocused: false },
+      { id: uid(), text: 'Hello Goodbye', order: 3, isFocused: false },
+    ],
     servings: 0,
   });
   const [userId, setUserId] = useState(null);
@@ -26,6 +31,7 @@ export default function NewRecipe() {
       .from('recipes')
       .insert({
         name: formData.name,
+        /* todo: insert instructions.text */
         servings: formData.servings,
         created_by: userId,
       });
