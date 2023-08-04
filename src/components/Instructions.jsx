@@ -120,7 +120,7 @@ const Step = ({ id, order, value, onChange, add, remove }) => {
 
   return (
     <div className='relative'>
-      <label htmlFor={`instruction-${id}`} className="sr-only">
+      <label htmlFor={`step-${id}`} className="sr-only">
         Step ${order}
       </label>
       <div className={clsx(
@@ -137,7 +137,7 @@ const Step = ({ id, order, value, onChange, add, remove }) => {
         <input
           ref={inputRef}
           type="text"
-          id={`instruction-${id}`}
+          id={`step-${id}`}
           className={clsx(
             'flex-1 rounded-none rounded-r-md',
             formReset,
