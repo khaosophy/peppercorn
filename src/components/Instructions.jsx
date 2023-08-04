@@ -53,8 +53,6 @@ export default function Instructions(props) {
   const removeStep = (id) => {
     const newInstructions = [...instructions];
     
-    if (newInstructions.length === 1) return onChange({ instructions: [{id: uid(), order: 1, text: '', isFocused: true }] });
-    
     const key = newInstructions.findIndex((instruction) => instruction.id === id);
     
     // update the order of the steps after the removed step
@@ -118,6 +116,7 @@ const Step = (props) => {
           add(id);
         }
         if (e.key === 'Backspace' && e.target.value === '') {
+          if(order === 1) return;
           remove(id);
         }
     }
@@ -127,7 +126,7 @@ const Step = (props) => {
     return () => {
       input.removeEventListener('keydown', handleEvents);
     }
-  }, [remove, add, id]);
+  }, [order, remove, add, id]);
 
   useEffect(() => {
     if (isFocused) {
