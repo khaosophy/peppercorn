@@ -6,7 +6,7 @@ import supabase from '@/lib/supabase';
 import uid from '@/lib/uid';
 import Container from '@/components/Container';
 import TextField from '@/components/TextField';
-// import TextArea from '@/components/TextArea';
+import TextArea from '@/components/TextArea';
 import Button from '@/components/Button';
 import Layout from '@/components/Layout';
 import Instructions from '@/components/Instructions';
@@ -33,6 +33,7 @@ export default function NewRecipe() {
         name: formData.name,
         /* todo: insert instructions.text */
         servings: formData.servings,
+        notes: formData.notes,
         created_by: userId,
       });
     
@@ -92,6 +93,14 @@ export default function NewRecipe() {
               type="number"
               value={formData.servings}
               onChange={(e) => setFormData({ ...formData, servings: e.target.value })}
+            />
+
+            <TextArea
+              label="Notes"
+              name="notes"
+              value={formData.notes}
+              rows={3}
+              onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
             />
 
             <Button type="button">Save Recipe</Button>
