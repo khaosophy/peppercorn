@@ -25,7 +25,7 @@ export default function Instructions(props) {
     const newInstructions = [...instructions];
     const key = newInstructions.findIndex((instruction) => instruction.id === id);
     newInstructions[key].text = event.target.value;
-    onChange({ instructions: newInstructions });
+    onChange(newInstructions);
   };
 
   const addStep = (id) => {
@@ -35,7 +35,7 @@ export default function Instructions(props) {
     if(!id) {
       // if no ID is passed, add a new step to the end of the array
       newInstructions.push({ id: newId, order: newInstructions.length + 1, text: '', isFocused: true });
-      return onChange({ instructions: newInstructions });
+      return onChange(newInstructions);
     }
     
     const key = newInstructions.findIndex((instruction) => instruction.id === id);
@@ -47,7 +47,7 @@ export default function Instructions(props) {
 
     const newStep = { id: newId, order: key + 2, text: '', isFocused: true };
     newInstructions.splice(key + 1, 0, newStep);
-    onChange({ instructions: newInstructions });
+    onChange(newInstructions);
   };
 
   const removeStep = (id) => {
@@ -68,7 +68,7 @@ export default function Instructions(props) {
       newInstructions[0].isFocused = true;
     }
     
-    onChange({ instructions: newInstructions });
+    onChange(newInstructions);
   };
 
   return (

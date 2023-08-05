@@ -14,12 +14,12 @@ import Instructions from '@/components/Instructions';
 export default function NewRecipe() {
   const [formData, setFormData] = useState({
     name: '',
-    instructions: [
-      { id: uid(), text: '', order: 1, isFocused: false },
-    ],
     servings: 0,
     notes: '',
   });
+  const [instructions, setInstructions] = useState([
+    { id: uid(), text: '', order: 1, isFocused: false }
+  ]);
   const [userId, setUserId] = useState(null);
 
   const handleSubmit = async (event) => {
@@ -30,7 +30,7 @@ export default function NewRecipe() {
       .from('recipes')
       .insert({
         name: formData.name,
-        /* todo: insert instructions.text */
+        instructions: instructions.map(({ text }) => text),
         servings: formData.servings,
         notes: formData.notes,
         created_by: userId,
@@ -82,8 +82,8 @@ export default function NewRecipe() {
             /> */}
 
             <Instructions
-              value={formData.instructions}
-              onChange={setFormData}
+              value={instructions}
+              onChange={setInstructions}
             />
 
             <TextField
@@ -102,7 +102,12 @@ export default function NewRecipe() {
               onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
             />
 
-            <Button type="button">Save Recipe</Button>
+            <Button
+              type="button"
+              onClick={handleSubmit}
+            >
+              Save Recipe
+            </Button>
           </form>
         </Container>
       </main>
