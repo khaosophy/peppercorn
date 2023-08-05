@@ -59,8 +59,15 @@ export default function Instructions(props) {
     for (let i = key + 1; i < newInstructions.length; i++) {
       newInstructions[i].order = newInstructions[i].order - 1;
     }
-    newInstructions.splice(key, 1);
-    newInstructions[key - 1].isFocused = true;
+    
+    if (newInstructions.length > 1) {
+      newInstructions.splice(key, 1);
+      newInstructions[key - 1].isFocused = true;
+    } else {
+      newInstructions[0].text = '';
+      newInstructions[0].isFocused = true;
+    }
+    
     onChange({ instructions: newInstructions });
   };
 
