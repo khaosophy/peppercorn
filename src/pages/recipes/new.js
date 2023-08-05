@@ -15,9 +15,7 @@ export default function NewRecipe() {
   const [formData, setFormData] = useState({
     name: '',
     instructions: [
-      { id: uid(), text: 'Hello', order: 1, isFocused: false },
-      { id: uid(), text: 'Goodbye', order: 2, isFocused: false },
-      { id: uid(), text: 'Hello Goodbye', order: 3, isFocused: false },
+      { id: uid(), text: '', order: 1, isFocused: false },
     ],
     servings: 0,
     notes: '',
